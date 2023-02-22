@@ -127,7 +127,7 @@ ssize_t Node::receive_message(int sockfd){
     char buff[default_len];
 //    std::regex r("\\s+");
     int ret = recv(sockfd, (void *)buff, default_len, default_offset);
-    std::cout << "recv: " << buff << std::endl;
+    //std::cout << "recv: " << buff << std::endl;
 
     string msg(buff);
     // remove unuseful characters
@@ -177,6 +177,10 @@ int Node::close_connection(int sockfd){
 // get a message received at/from the node
 string Node::get_message() {
     string msg;
+    if(messages.empty()) {
+        std::cout << "Message buffer is empty" << std::endl;
+        return "";
+    }
     auto itr = messages.begin();
     msg = *itr;
 
