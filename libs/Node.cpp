@@ -132,14 +132,14 @@ ssize_t Node::receive_message(int sockfd){
     string msg(buff);
     // remove unuseful characters
 //    msg = std::regex_replace(msg, r, "");
-    /*
+    
     msg.erase(std::remove_if(msg.begin(), msg.end(),
                         [](char c) {
                             return (c == '\n' || c == '\r' ||
                                     c == '\t' || c == '\v' || c == '\f');
                         }),
                         msg.end());
-    */
+    
     messages.push_back(msg); // added received message.
     return ret;
 }

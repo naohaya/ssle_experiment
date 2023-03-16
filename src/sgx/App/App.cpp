@@ -210,9 +210,6 @@ int main(int argc, char *argv[])
         rval = pprf.prf(&secret, &lcg, &hash);
         punct = pprf.puncturing(rval);
 
-        // commitment object
-        Commitment cmt = Commitment();
-
         // register itself
         nodes.push_back(thisNode);
 
@@ -237,7 +234,7 @@ int main(int argc, char *argv[])
         std::cout << "Leader sent: " << str << "(" << str.length() << ")" << std::endl;
 
         // send committed value
-        comm = cmt.commit(rval, rval.length());
+        comm = "test";
         thisNode.send_message(inconnect, comm, comm.length(), 0); // send message to participants
         std::cout << "Leader sent: " << comm << "(" << comm.length() << ")" << std::endl;
 
