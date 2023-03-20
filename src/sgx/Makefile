@@ -89,8 +89,8 @@ endif
 # App_Cpp_Files := App/App.cpp $(wildcard App/Edger8rSyntax/*.cpp) $(wildcard App/TrustedLibrary/*.cpp)
 App_Cpp_Files := App/App.cpp App/error_print.cpp
 # App_Include_Paths := -IInclude -IApp -I$(SGX_SDK)/include
-App_Include_Paths := -IApp -I$(SGX_SDK)/include -I../../libs
-App_Library := ../../libs/Node.a 
+App_Include_Paths := -IApp -I$(SGX_SDK)/include -I../../libs -I../../pprf_ssle
+App_Library := ../../libs/Node.a ../../pprf_ssle/pprf.a
 
 App_C_Flags := $(SGX_COMMON_CFLAGS) -fPIC -Wno-attributes $(App_Include_Paths)
 
