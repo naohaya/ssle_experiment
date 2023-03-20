@@ -42,7 +42,7 @@ endif
 CC := /home/naohaya/work/obfuscation/Pluto-Obfuscator/install/bin/clang
 #CXX := /opt/llvm-14/bin/clang++
 #CXX := /usr/bin/clang++
-CXX := /home/naohaya/work/obfuscation/Pluto-Obfuscator/install/bin/clang++
+CXX := /home/naohaya/work/obfuscation/Pluto-Obfuscator/install/bin/clang++ #for Pluto
 LIBOBF := $(HOME)/work/obfuscation/obfuscator-llvm-forks/obfuscator-llvm/build/libLLVMObfuscator.so
 #OBFFLAGS := -fpass-plugin=$(LIBOBF)
 OBFFLAGS := -mllvm -mba -mllvm -fla-ex -mllvm -gle
