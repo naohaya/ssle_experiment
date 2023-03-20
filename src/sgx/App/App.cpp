@@ -12,7 +12,7 @@
 #include <sstream>
 #include "Node.h"
 #include "pprf.h"
-#include "commitment.h"
+//#include "commitment.h"
 #include "error_print.h"
 #include "Enclave_u.h"
 #include <sgx_urts.h>
