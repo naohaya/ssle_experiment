@@ -195,7 +195,7 @@ App/%.o: App/%.cpp
 	@echo "CXX  <=  $<"
 
 $(App_Name): App/Enclave_u.o $(App_Cpp_Objects)
-	@$(CXX) $^ -o $@ $(App_Link_Flags)
+	@$(CXX) $^ -o $@ $(App_Link_Flags) $(App_Library) 
 	@echo "LINK =>  $@"
 
 
