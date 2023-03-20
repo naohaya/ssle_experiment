@@ -30,9 +30,10 @@ class SSLE_Obfuscation : public SSLE
     public:
         void initialize(uint64_t, vector<Node>);
         void electLeader();
-        int verifyLeader();
+        static int verifyLeader();
         string getRandKey();
         string getPunctKey();
+        string getCommValue(int);
 
 };
 
@@ -60,6 +61,7 @@ void SSLE_Obfuscation::electLeader()
     rand_value = stringToUint32(rand.c_str()); // convert string into uint32_t
     leader_id = rand_value % nodes.size();
 
+    /* bit commitment NOTE: it should use oblivious transfer */
     for (int i = 0; i < nodes.size(); i++)
     {
         if(i == leader_id){
@@ -84,6 +86,12 @@ string SSLE_Obfuscation::getRandKey()
 string SSLE_Obfuscation::getPunctKey()
 {
     return punctKey;
+}
+
+/* get a commit value correspoding to the given node ID (n) */
+string SSLE_Obfuscation::getCommValue(int n)
+{
+    return comm_values[n];
 }
 
 string SSLE_Obfuscation::commit(string val)

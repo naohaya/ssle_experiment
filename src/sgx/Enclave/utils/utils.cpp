@@ -60,6 +60,23 @@ std::string hexToBinary(std::string hexString, int bitLength) {
 }
 
 /* convert binary string into dynamic_bitset */
+// without using dynamic_bitset
+std::bitset<64> binStringToBitset(const std::string& binaryString)
+{
+    std::bitset<64> bitset;
+    int index = 0;
+    for (auto it = binaryString.crbegin(); it != binaryString.crend(); ++it)
+    {
+        if (*it == '1')
+        {
+            bitset.set(index);
+        }
+        ++index;
+    }
+    return bitset;
+}
+
+//using dynamic_bitset
 boost::dynamic_bitset<> binStringToDynamicBitset(std::string binaryString) {
   boost::dynamic_bitset<> dynamicBitset(binaryString); // stringをdynamic_bitsetに変換する
 

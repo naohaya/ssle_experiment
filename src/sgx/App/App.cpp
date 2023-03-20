@@ -205,10 +205,6 @@ int main(int argc, char *argv[])
 
         /* ends ECALL */
 
-        // creating an object of PPRF
-        PPRF pprf = PPRF();
-        rval = pprf.prf(&secret, &lcg, &hash);
-        punct = pprf.puncturing(rval);
 
         // register itself
         nodes.push_back(thisNode);
