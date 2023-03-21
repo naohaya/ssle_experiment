@@ -16,21 +16,21 @@
 #include "cmdline.h"
 #include "viterbi.h"
 
-using namespace std;
+//using namespace std;
 
 class PPRF {
 public:
     PPRF(){}
-    uint64_t hexToDecimal(string); // converting from hex string to decimal value (uint64_t)
-    vector<char> hexToBinary(string); // converting from hex string to Binary array (vector<char>)
-    string prf(uint64_t *, uint64_t *, uint64_t *); // pseudo-random function
-    string puncturing(string); // puncturing the bit string by convolutional coding
-    string depuncturing(string); // depuncturing the bit string by viterbi decorder
-    string decimalToBinary(uint64_t); // converting from decimal value (uint64_t) to binary string
-    string binaryToHex(string); // converting from binary string to hex string
-    vector<string> splitBinaryVector(string&, int); 
-    string bitFlip(const string&); // random bit flips
-    string align(string);
+    uint64_t hexToDecimal(std::string); // converting from hex string to decimal value (uint64_t)
+    std::vector<char> hexToBinary(std::string); // converting from hex string to Binary array (vector<char>)
+    std::string prf(uint64_t *, uint64_t *, uint64_t *); // pseudo-random function
+    std::string puncturing(std::string); // puncturing the bit string by convolutional coding
+    std::string depuncturing(std::string); // depuncturing the bit string by viterbi decorder
+    std::string decimalToBinary(uint64_t); // converting from decimal value (uint64_t) to binary string
+    std::string binaryToHex(std::string); // converting from binary string to hex string
+    std::vector<std::string> splitBinaryVector(std::string&, int); 
+    std::string bitFlip(const std::string&); // random bit flips
+    std::string align(std::string);
 private:
     int keySize = 0;
     bool debug = false;
@@ -39,7 +39,7 @@ private:
 
 
 /* pseudo-random function */
-string PPRF::prf(uint64_t *seed, uint64_t *lcg, uint64_t *hash){        
+std::string PPRF::prf(uint64_t *seed, uint64_t *lcg, uint64_t *hash){        
     uint64_t ret = 0;
     uint64_t i;
     // generating a random value by prf
@@ -52,15 +52,15 @@ string PPRF::prf(uint64_t *seed, uint64_t *lcg, uint64_t *hash){
 }
 
 /* puncturing a random value bit string using convolutional erasure code + bit flips */
-string PPRF::puncturing(string rvalue) {
-    vector<string> splvec;
-    vector<int> polynomials;
+std::string PPRF::puncturing(std::string rvalue) {
+    std::vector<std::string> splvec;
+    std::vector<int> polynomials;
     int constraint = 3;
-    ostringstream oss;
-    string rval_str = rvalue;
-    string enc;
-    string punc;
-    string result;
+    std::ostringstream oss;
+    std::string rval_str = rvalue;
+    std::string enc;
+    std::string punc;
+    std::string result;
 
     polynomials.push_back(6);
     polynomials.push_back(5);
@@ -93,15 +93,15 @@ string PPRF::puncturing(string rvalue) {
 }
 
 /* depuncturing a bit string by viterbi decoder */
-string PPRF::depuncturing(string bits) {
-    vector<string> splvec;
-    vector<int> polynomials;
+std::string PPRF::depuncturing(std::string bits) {
+    std::vector<std::string> splvec;
+    std::vector<int> polynomials;
     int constraint = 3;
-    ostringstream oss;
-    string rval_str = bits;
-    string dec;
-    string punc;
-    string result;
+    std::ostringstream oss;
+    std::string rval_str = bits;
+    std::string dec;
+    std::string punc;
+    std::string result;
 
     polynomials.push_back(6);
     polynomials.push_back(5);
@@ -125,7 +125,7 @@ string PPRF::depuncturing(string bits) {
 }
 
 /* random bit flips */
-string PPRF::bitFlip(const string& inbits){
+std::string PPRF::bitFlip(const std::string& inbits){
     string bits = inbits;
     srand( time(NULL) );
     int insize = bits.size();
@@ -153,7 +153,7 @@ string PPRF::bitFlip(const string& inbits){
 uint64_t PPRF::hexToDecimal(std::string sarg) {
     unsigned int value;
     uint64_t ret;
-    istringstream iss(sarg);
+    std::istringstream iss(sarg);
 
     iss >> hex >> value;
 
@@ -200,7 +200,7 @@ std::string PPRF::binaryToHex (std::string inBin) {
 }
 
 /* split vector in to a small vector of a certain length */
-vector<string> PPRF::splitBinaryVector (string& vec, int num){
+std::vector<std::string> PPRF::splitBinaryVector (std::string& vec, int num){
 
     vector<string> result;
  
@@ -220,9 +220,9 @@ vector<string> PPRF::splitBinaryVector (string& vec, int num){
 
 }
 
-string PPRF::decimalToBinary(uint64_t n) {
+std::string PPRF::decimalToBinary(uint64_t n) {
  
-    string result;
+    std::string result;
     while (n != 0){
         result += n % 2 == 0 ? '0' : '1' ;
         n /= 2;
@@ -231,9 +231,9 @@ string PPRF::decimalToBinary(uint64_t n) {
     return result;
 }
 
-string PPRF::align(const string bits){
-    string rval_str = bits;
-    string result;
+std::string PPRF::align(const std::string bits){
+    std::string rval_str = bits;
+    std::string result;
     int keySize = rval_str.size();
     int remain = keySize % 7; // currently key size should be a multiples of 7
     result = rval_str.erase(keySize - remain);
