@@ -15,11 +15,11 @@ int ecall_test(const char *message, size_t message_len)
 }
 
 
-uint64_t ecall_election(uint64_t sec, std::vector<Node> nodes)
+uint64_t ecall_election(uint64_t sec, int num_nodes)
 {
 	SSLE_Obfuscation ssleobf;
 
-	ssleobf.initialize(sec, nodes);
+	ssleobf.initialize(sec, num_nodes);
 
 	ssleobf.electLeader();
 

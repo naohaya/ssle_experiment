@@ -5,7 +5,7 @@ enclave
 		/*These are ECALL defines.*/
 		public int ecall_test([in, size=message_len]const char *message,
 			size_t message_len);
-    public ecall_election(uint64_t sec, std::vector<Node> nodes);
+                public uint64_t ecall_election(uint64_t sec, int participants);
 	};
 	untrusted
 	{

@@ -24,6 +24,7 @@ class SSLE_Obfuscation : public SSLE
     uint64_t lcg = 0; // needed for pprf.
     string randKey;
     string punctKey;
+    int num;
     uint32_t leader_id;
 
 
@@ -37,10 +38,11 @@ class SSLE_Obfuscation : public SSLE
 
 };
 
-void SSLE_Obfuscation::initialize(uint64_t sec, vector<Node> participants)
+void SSLE_Obfuscation::initialize(uint64_t sec, int participants)
 {
     secret = sec;
-    nodes = participants;
+//    nodes = participants;
+    num = participants;
 
 
 }
@@ -59,10 +61,10 @@ void SSLE_Obfuscation::electLeader()
 
     /* leader election in randomized way */
     rand_value = stringToUint32(rand.c_str()); // convert string into uint32_t
-    leader_id = rand_value % nodes.size();
+    leader_id = rand_value % num;
 
     /* bit commitment NOTE: it should use oblivious transfer */
-    for (int i = 0; i < nodes.size(); i++)
+    for (int i = 0; i < num; i++)
     {
         if(i == leader_id){
             comm_value.push_back(randKey); // if he is a leader
