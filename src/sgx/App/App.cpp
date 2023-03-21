@@ -176,6 +176,7 @@ int main(int argc, char *argv[])
         const char *message = "Hello Enclave.";
         size_t message_len = strlen(message);
         int retval = -9999;
+        uint64_t pkey;
 
         std::cout << "Execute ECALL.\n"
                   << std::endl;
@@ -183,7 +184,7 @@ int main(int argc, char *argv[])
         sgx_status_t status = ecall_test(global_eid, &retval,
                                          message, message_len);
 
-        sgx_status_t pkey = ecall_election(global_eid, &retval, secret, 3); // for test
+        sgx_status_t status = ecall_election(global_eid, &pkey, secret, 3); // for test
 
         if (status != SGX_SUCCESS)
         {
