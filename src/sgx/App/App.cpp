@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
         sgx_status_t status = ecall_test(global_eid, &retval,
                                          message, message_len);
 
-        uint64_t pkey = ecall_election(secret, 3); // for test
+        sgx_status_t pkey = ecall_election(global_eid, &retval, secret, 3); // for test
 
         if (status != SGX_SUCCESS)
         {
