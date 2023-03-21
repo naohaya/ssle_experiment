@@ -161,6 +161,9 @@ int main(int argc, char *argv[])
         string punct;
         string comm;
 
+        // register itself
+        nodes.push_back(thisNode);
+
         /* initializing enclave */
         if (initialize_enclave() < 0)
         {
@@ -179,6 +182,8 @@ int main(int argc, char *argv[])
 
         sgx_status_t status = ecall_test(global_eid, &retval,
                                          message, message_len);
+
+        uint64_t pkey = ecall_election(sec, );
 
         if (status != SGX_SUCCESS)
         {
@@ -205,9 +210,6 @@ int main(int argc, char *argv[])
 
         /* ends ECALL */
 
-
-        // register itself
-        nodes.push_back(thisNode);
 
         thisNode.initialization();
 
