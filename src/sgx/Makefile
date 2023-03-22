@@ -66,6 +66,11 @@ else
 		SGX_COMMON_CFLAGS += -O2
 endif
 
+SGX_COMMON_FLAGS += -Wall -Wextra -Winit-self -Wpointer-arith -Wreturn-type \
+                    -Waddress -Wsequence-point -Wformat-security \
+                    -Wmissing-include-dirs -Wfloat-equal -Wundef -Wshadow \
+                    -Wcast-align -Wcast-qual -Wconversion -Wredundant-decls
+
 ######## Obfuscation Settings ########
 
 #CC := /opt/llvm-14/bin/clang
@@ -136,7 +141,7 @@ Enclave_Cpp_Files := Enclave/Enclave.cpp
 Enclave_Include_Paths := -IEnclave -I$(SGX_SDK)/include -I$(SGX_SDK)/include/tlibc -I$(SGX_SDK)/include/stlport
 
 Enclave_C_Flags := $(SGX_COMMON_CFLAGS) -nostdinc -fvisibility=hidden -fpie -fstack-protector $(Enclave_Include_Paths) # $(OBFFLAGS)
-Enclave_Cpp_Flags := $(Enclave_C_Flags) -std=c++03 -nostdinc++ $(OBFFLAGS)
+Enclave_Cpp_Flags := $(SGX_COMMON_FLAGS) $(Enclave_C_Flags) -std=c++11 -nostdinc++ $(OBFFLAGS)
 Enclave_Link_Flags := $(SGX_COMMON_CFLAGS) -Wl,--no-undefined -nostdlib -nodefaultlibs -nostartfiles -L$(SGX_LIBRARY_PATH) \
 	-Wl,--whole-archive -l$(Trts_Library_Name) -Wl,--no-whole-archive \
 	-Wl,--start-group -lsgx_tstdc -lsgx_tstdcxx -l$(Crypto_Library_Name) -l$(Service_Library_Name) -Wl,--end-group \
