@@ -15,11 +15,11 @@ int ecall_test(const char *message, size_t message_len)
 }
 
 
-uint64_t ecall_election(uint64_t sec, int num_nodes)
+uint64_t ecall_election(const int *num_nodes) //TODO: seckey should not be received here
 {
 	SSLE_Obfuscation ssleobf;
 
-	ssleobf.initialize(sec, num_nodes);
+	ssleobf.initialize(*num_nodes);
 
 	ssleobf.electLeader();
 

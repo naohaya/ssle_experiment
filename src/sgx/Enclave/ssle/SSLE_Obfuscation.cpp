@@ -38,11 +38,11 @@ class SSLE_Obfuscation : public SSLE
 
 };
 
-void SSLE_Obfuscation::initialize(uint64_t sec, int participants)
+void SSLE_Obfuscation::initialize(const int *participants)
 {
-    secret = sec;
+    // secure key should be generated in Enclave.
 //    nodes = participants;
-    num = participants;
+    num = *participants;
 
 
 }
