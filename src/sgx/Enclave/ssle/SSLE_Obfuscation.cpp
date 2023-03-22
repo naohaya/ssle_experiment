@@ -9,8 +9,8 @@
 #include <string> 
 #include <sstream>
 #include "Node.h"
-#include "pprf.h"
-#include "utils.h"
+#include "../pprf/pprf.h"
+#include "../utils/utils.h"
 
 using namespace std;
 
