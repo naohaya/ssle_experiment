@@ -13,10 +13,10 @@
 #include <vector>
 #include <ctime>
 #include "prvhash_core.h"
-#include "cmdline.h"
+//#include "cmdline.h"
 #include "viterbi.h"
 
-//using namespace std;
+using namespace std;
 
 class PPRF {
 public:
