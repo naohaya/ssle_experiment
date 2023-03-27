@@ -70,8 +70,7 @@ string SSLE_Obfuscation::commit(string val)
     uint32_t rand_val;
     uint32_t result;
     uint32_t input = stringToUint32(val);
-    sgr_read_rand(rand, rand.length());
-    rand_val = stringToUint32(rand.c_str());
+    sgx_read_rand((unsigned char *)&rand_val, 4);
 
     result = input ^ rand_val;
 
