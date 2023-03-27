@@ -9,7 +9,7 @@
 class SSLE_Obfuscation : public SSLE
 {
     public:
-        void initialize(uint64_t, vector<Node>);
+        void initialize(const int *);
         void electLeader();
         static int verifyLeader();
         std::string getRandKey();
