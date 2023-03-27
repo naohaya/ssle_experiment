@@ -9,7 +9,6 @@
 using namespace std;
 
 
-
 void SSLE_Obfuscation::initialize(const int *participants)
 {
     // secure key should be generated in Enclave.
