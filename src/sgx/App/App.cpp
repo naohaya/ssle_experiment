@@ -9,6 +9,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string>
+#include <stdio.h>
 #include <sstream>
 #include "Node.h"
 //#include "pprf.h"
@@ -179,7 +180,7 @@ int main(int argc, char *argv[])
         size_t message_len = strlen(message);
         int retval = -9999;
         const int num = 3;
-        string pkey;
+        char *pkey;
 
         std::cout << "Execute ECALL.\n"
                   << std::endl;
@@ -187,7 +188,7 @@ int main(int argc, char *argv[])
         sgx_status_t status = ecall_test(global_eid, &retval,
                                          message, message_len);
 
-        sgx_status_t status2 = ecall_election(global_eid, &pkey, &num); // for test
+        sgx_status_t status2 = ecall_election(global_eid, pkey, &num); // for test
 
         if (status != SGX_SUCCESS)
         {
