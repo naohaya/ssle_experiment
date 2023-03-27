@@ -3,6 +3,7 @@
 #include <string> 
 #include <sstream>
 #include <vector>
+#include "sgx_trts.h"
 //#include "Node.h"
 #include "../pprf/pprf.h"
 #include "../utils/utils.h"

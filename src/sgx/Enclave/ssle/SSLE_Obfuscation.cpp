@@ -20,7 +20,6 @@ void SSLE_Obfuscation::initialize(const int *participants)
 
 void SSLE_Obfuscation::electLeader()
 {
-    char[10] rand;
     uint32_t rand_value;
     PPRF pprf = PPRF();
 
@@ -28,10 +27,8 @@ void SSLE_Obfuscation::electLeader()
     randKey = pprf.prf(&secret, &lcg, &hash); // obtain a random key.
     punctKey = pprf.puncturing(randKey); // obtain a punctured key.
 
-    randomValue(rand, rand.length()); // generate a random number;
-
     /* leader election in randomized way */
-    rand_value = stringToUint32(rand.c_str()); // convert string into uint32_t
+    sgx_read_rand((unsigned char *)&rand_value, 4);
     leader_id = rand_value % num;
 
     /* bit commitment NOTE: it should use oblivious transfer */
