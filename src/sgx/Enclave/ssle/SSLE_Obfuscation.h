@@ -11,7 +11,7 @@ class SSLE_Obfuscation //: public SSLE
 {
     private:
 //    vector<Node> nodes; // a list of participants.
-    std::vector<string> comm_values; // committed values correspoding to nodes
+    std::vector<std::string> comm_values; // committed values correspoding to nodes
     uint64_t secret = 0x93064E905C127FE5; // key
     uint64_t hash = 0xA4BDE5C4A05E6256; // hash (constant)
     uint64_t lcg = 0; // needed for pprf.
