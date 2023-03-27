@@ -52,7 +52,7 @@ void Usage(const std::string& exec) {
       << exec << " --encode 3 6 5 1001101\n"
       << exec << " --encode --reverse_polynomials 3 3 5 1001101\n";
 }
-
+*/
 // Parses and sets command line flags (FLAGS_*).
 // Returns all non-flag arguments, also excluding argv[0].
 std::vector<std::string> ParseFlags(int argc, char** argv) {
@@ -71,7 +71,7 @@ std::vector<std::string> ParseFlags(int argc, char** argv) {
   }
   return args;
 }
-*/
+
 
 
 int ParseInt(const std::string& s) {
@@ -126,7 +126,7 @@ void ViterbiMain(const std::vector<std::string>& args) {
   for (int i = 0; i < bits.size(); i++) {
     if (bits[i] != '0' && bits[i] != '1') {
 //      std::cout << "Expected a binary sequence, found " << bits << std::endl;
-      exit(1);
+//      exit(1);
     }
   }
 
