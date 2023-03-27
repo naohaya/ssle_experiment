@@ -2,7 +2,7 @@
 #include <bitset>
 #include <string>
 #include <sstream>
-#include <boost/dynamic_bitset.hpp> /* corresponding to binStringtoDynamicBitset() */
+//#include <boost/dynamic_bitset.hpp> /* corresponding to binStringtoDynamicBitset() */
 
 /* convert uint32_t into string */
 std::string binaryToString(uint32_t bs) {
@@ -77,8 +77,10 @@ std::bitset<64> binStringToBitset(const std::string& binaryString)
 }
 
 //using dynamic_bitset
+/*
 boost::dynamic_bitset<> binStringToDynamicBitset(std::string binaryString) {
   boost::dynamic_bitset<> dynamicBitset(binaryString); // stringをdynamic_bitsetに変換する
 
   return dynamicBitset;
 }
+*/
