@@ -1,6 +1,7 @@
 #include "Enclave_t.h"
 #include <sgx_trts.h>
 #include <stdio.h>
+#include <stdlib.h>
 //#include <iostream>
 //#include <vector>
 //#include "Node.h"
@@ -16,13 +17,16 @@ int ecall_test(const char *message, size_t message_len)
 
 
 char * ecall_election(const int *num_nodes) //TODO: seckey should not be received here
-{
+{	
+	string result;
+	char * ret;
 	SSLE_Obfuscation ssleobf;
 
 	ssleobf.initialize(num_nodes);
 
 	ssleobf.electLeader();
 
-	char * ret = ssleobf.getPunctKey().c_str();
+	result = ssleobf.getPunctKey();
+	memcpy(ret, result.c_str(), result.length());
 	return ret;
 }
