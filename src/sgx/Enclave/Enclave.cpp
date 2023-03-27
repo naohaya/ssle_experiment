@@ -19,7 +19,7 @@ uint64_t ecall_election(const int *num_nodes) //TODO: seckey should not be recei
 {
 	SSLE_Obfuscation ssleobf;
 
-	ssleobf.initialize(*num_nodes);
+	ssleobf.initialize(num_nodes);
 
 	ssleobf.electLeader();
 
