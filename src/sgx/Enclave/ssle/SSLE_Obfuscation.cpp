@@ -66,7 +66,7 @@ string SSLE_Obfuscation::getCommValue(int n)
 
 string SSLE_Obfuscation::commit(string val)
 {
-    char[10] rand;
+    char rand[10];
     uint32_t rand_val;
     uint32_t result;
     uint32_t input = stringToUint32(val);
