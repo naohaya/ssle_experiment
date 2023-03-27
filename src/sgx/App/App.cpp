@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
         size_t message_len = strlen(message);
         int retval = -9999;
         const int num = 3;
-        uint64_t pkey;
+        string pkey;
 
         std::cout << "Execute ECALL.\n"
                   << std::endl;

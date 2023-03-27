@@ -15,7 +15,7 @@ int ecall_test(const char *message, size_t message_len)
 }
 
 
-uint64_t ecall_election(const int *num_nodes) //TODO: seckey should not be received here
+string ecall_election(const int *num_nodes) //TODO: seckey should not be received here
 {
 	SSLE_Obfuscation ssleobf;
 
