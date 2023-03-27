@@ -35,9 +35,9 @@ void SSLE_Obfuscation::electLeader()
     for (int i = 0; i < num; i++)
     {
         if(i == leader_id){
-            comm_value.push_back(randKey); // if he is a leader
+            comm_values.push_back(randKey); // if he is a leader
         } else{
-            comm_value.push_back(commit(randKey)); // if he is not a leader
+            comm_values.push_back(commit(randKey)); // if he is not a leader
         }
     }
 
