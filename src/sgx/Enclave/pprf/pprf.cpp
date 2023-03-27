@@ -15,6 +15,7 @@
 #include "prvhash_core.h"
 //#include "cmdline.h"
 #include "viterbi.h"
+#include "sgx_trts.h"
 
 using namespace std;
 
@@ -127,11 +128,12 @@ std::string PPRF::depuncturing(std::string bits) {
 /* random bit flips */
 std::string PPRF::bitFlip(const std::string& inbits){
     string bits = inbits;
-    srand( time(NULL) );
+    uint32_t rdm;
     int insize = bits.size();
     int pos, offset;
-    pos = rand() % insize;
-    offset = (rand() % insize/3) * 2;
+    sgx_read_rand((unsigned char *) &rdm, 4);
+    pos = rdm % insize;
+    offset = (rdm % insize/3) * 2;
 
     if (bits[pos] == '0'){
         bits[pos] = '1';
