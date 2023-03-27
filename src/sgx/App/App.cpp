@@ -11,12 +11,14 @@
 #include <string>
 #include <sstream>
 #include "Node.h"
-#include "pprf.h"
+//#include "pprf.h"
 //#include "commitment.h"
 #include "error_print.h"
 #include "Enclave_u.h"
 #include <sgx_urts.h>
 #include "error_print.h"
+
+using namespace std;
 
 Node registration(std::string);
 void ocall_print(const char *);
