@@ -6,7 +6,7 @@
 #include "../pprf/pprf.h"
 #include "../utils/utils.h"
 
-class SSLE_Obfuscation : public SSLE
+class SSLE_Obfuscation 
 {
     public:
         void initialize(const int *);
