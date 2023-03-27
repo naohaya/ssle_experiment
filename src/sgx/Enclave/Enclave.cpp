@@ -2,6 +2,7 @@
 #include <sgx_trts.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 //#include <iostream>
 //#include <vector>
 //#include "Node.h"
@@ -18,7 +19,7 @@ int ecall_test(const char *message, size_t message_len)
 
 char * ecall_election(const int *num_nodes) //TODO: seckey should not be received here
 {	
-	string result;
+	std::string result;
 	char * ret;
 	SSLE_Obfuscation ssleobf;
 
