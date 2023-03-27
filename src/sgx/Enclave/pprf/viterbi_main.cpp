@@ -59,8 +59,8 @@ std::vector<std::string> ParseFlags(int argc, char** argv) {
   std::vector<std::string> args;
   for (int i = 1; i < argc; i++) {
     if (strcmp(argv[i], "--help") == 0) {
-      Usage(argv[0]);
-      exit(1);
+//      Usage(argv[0]);
+//      exit(1);
     } else if (std::strcmp(argv[i], "--reverse_polynomials") == 0) {
       FLAGS_reverse_polynomials = true;
     } else if (std::strcmp(argv[i], "--encode") == 0) {
@@ -79,7 +79,7 @@ int ParseInt(const std::string& s) {
   const int i = (int) std::strtol(s.c_str(), &end, 10);
   if (end - s.c_str() != s.size()) {
 //    std::cout << "Expected a number, found " << s << std::endl;
-    exit(1);
+//    exit(1);
   }
   return i;
 }
@@ -88,7 +88,7 @@ int ParseInt(const std::string& s) {
 void ViterbiMain(const std::vector<std::string>& args) {
   if (args.size() < 4) {
 //    std::cout << "Insufficient number of arguments." << std::endl;
-    exit(1);
+//    exit(1);
   }
 
   // Parse and validate constraint.
@@ -96,7 +96,7 @@ void ViterbiMain(const std::vector<std::string>& args) {
   if (constraint <= 0) {
 //    std::cout << "Constraint should be greater than 0, found " << constraint
 //            << std::endl;
-    exit(1);
+//    exit(1);
   }
 
   // Parse and validate generator polynomials.
@@ -106,12 +106,12 @@ void ViterbiMain(const std::vector<std::string>& args) {
     if (polynomial <= 0) {
 //      std::cout << "Polynomial should be greater than 0, found " << polynomial
 //                << std::endl;
-      exit(1);
+//      exit(1);
     }
     if (polynomial >= (1 << constraint)) {
 //      std::cout << "Polynomial should be less than " << (1 << constraint)
 //                << ", found " << polynomial << std::endl;
-      exit(1);
+//      exit(1);
     }
     polynomials.push_back(polynomial);
   }
