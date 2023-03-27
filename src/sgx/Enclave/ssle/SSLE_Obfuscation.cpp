@@ -43,7 +43,7 @@ void SSLE_Obfuscation::electLeader()
 
 }
 
-void SSLE_Obfuscation::verifyLeader()
+int SSLE_Obfuscation::verifyLeader()
 {
 
 }

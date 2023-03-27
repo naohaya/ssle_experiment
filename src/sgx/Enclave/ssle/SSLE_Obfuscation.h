@@ -29,5 +29,6 @@ class SSLE_Obfuscation //: public SSLE
         std::string getRandKey();
         std::string getPunctKey();
         std::string getCommValue(int);
+        std::string commit(std:string);
 
 };
