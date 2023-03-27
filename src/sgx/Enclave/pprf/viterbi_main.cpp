@@ -139,6 +139,7 @@ void ViterbiMain(const std::vector<std::string>& args) {
   }
 }
 
+/*
 int main(int argc, char** argv) {
   std::vector<std::string> args = ParseFlags(argc, argv);
 
@@ -160,3 +161,4 @@ int main(int argc, char** argv) {
 
   ViterbiMain(args);
 }
+*/
