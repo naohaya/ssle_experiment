@@ -79,10 +79,10 @@ std::string PPRF::puncturing(std::string rvalue) {
         punc = bitFlip(enc); // encoding and bit flipping
         result += punc;
         if(debug){
-            cout << "vec: " << *itr << endl; // for debug
-            cout << " enc: " << enc;  // for debug
+//            cout << "vec: " << *itr << endl; // for debug
+//            cout << " enc: " << enc;  // for debug
             //cout << " hex: " << binaryToHex(codec.Encode(*itr));
-            cout << " punc: " << punc << endl; // for debug
+//            cout << " punc: " << punc << endl; // for debug
         }
     }
 
@@ -115,8 +115,8 @@ std::string PPRF::depuncturing(std::string bits) {
         dec = codec.Decode(*itr);
         result += dec;
         if(debug){
-            cout << "vec: " << *itr << endl; // for debug
-            cout << " dec: " << dec;  // for debug
+//            cout << "vec: " << *itr << endl; // for debug
+//            cout << " dec: " << dec;  // for debug
         }
     } 
 
@@ -159,7 +159,7 @@ uint64_t PPRF::hexToDecimal(std::string sarg) {
 
 /*    value << std::hex << iss; */
 
-    cout << sarg << endl;
+//    cout << sarg << endl;
 
     ret = static_cast<uint64_t>(value); 
 
@@ -239,8 +239,8 @@ std::string PPRF::align(const std::string bits){
     result = rval_str.erase(keySize - remain);
 
     if(debug){
-        std::cout << "input size: " << keySize << " key: " << rval_str << std::endl; // for debug
-        std::cout << "output size: "<< result.size() << "key: " << result << std::endl; // for debug
+//        std::cout << "input size: " << keySize << " key: " << rval_str << std::endl; // for debug
+//        std::cout << "output size: "<< result.size() << "key: " << result << std::endl; // for debug
     }
 
     return result;
