@@ -22,6 +22,7 @@ static bool FLAGS_reverse_polynomials = false;
 // Whether to perform encoding instead of decoding.
 static bool FLAGS_encode = false;
 
+/*
 void Usage(const std::string& exec) {
   std::cout
       << "Usage:\n"
@@ -70,28 +71,31 @@ std::vector<std::string> ParseFlags(int argc, char** argv) {
   }
   return args;
 }
+*/
+
 
 int ParseInt(const std::string& s) {
   char* end;
   const int i = (int) std::strtol(s.c_str(), &end, 10);
   if (end - s.c_str() != s.size()) {
-    std::cout << "Expected a number, found " << s << std::endl;
+//    std::cout << "Expected a number, found " << s << std::endl;
     exit(1);
   }
   return i;
 }
 
+
 void ViterbiMain(const std::vector<std::string>& args) {
   if (args.size() < 4) {
-    std::cout << "Insufficient number of arguments." << std::endl;
+//    std::cout << "Insufficient number of arguments." << std::endl;
     exit(1);
   }
 
   // Parse and validate constraint.
   const int constraint = ParseInt(args[0]);
   if (constraint <= 0) {
-    std::cout << "Constraint should be greater than 0, found " << constraint
-              << std::endl;
+//    std::cout << "Constraint should be greater than 0, found " << constraint
+//            << std::endl;
     exit(1);
   }
 
@@ -100,13 +104,13 @@ void ViterbiMain(const std::vector<std::string>& args) {
   for (int i = 1; i < args.size() - 1; i++) {
     const int polynomial = ParseInt(args[i]);
     if (polynomial <= 0) {
-      std::cout << "Polynomial should be greater than 0, found " << polynomial
-                << std::endl;
+//      std::cout << "Polynomial should be greater than 0, found " << polynomial
+//                << std::endl;
       exit(1);
     }
     if (polynomial >= (1 << constraint)) {
-      std::cout << "Polynomial should be less than " << (1 << constraint)
-                << ", found " << polynomial << std::endl;
+//      std::cout << "Polynomial should be less than " << (1 << constraint)
+//                << ", found " << polynomial << std::endl;
       exit(1);
     }
     polynomials.push_back(polynomial);
@@ -121,7 +125,7 @@ void ViterbiMain(const std::vector<std::string>& args) {
   const std::string& bits = args.back();
   for (int i = 0; i < bits.size(); i++) {
     if (bits[i] != '0' && bits[i] != '1') {
-      std::cout << "Expected a binary sequence, found " << bits << std::endl;
+//      std::cout << "Expected a binary sequence, found " << bits << std::endl;
       exit(1);
     }
   }
@@ -129,9 +133,9 @@ void ViterbiMain(const std::vector<std::string>& args) {
   ViterbiCodec codec(constraint, polynomials);
 
   if (FLAGS_encode) {
-    std::cout << codec.Encode(bits) << std::endl;
+//    std::cout << codec.Encode(bits) << std::endl;
   } else {
-    std::cout << codec.Decode(bits) << std::endl;
+//    std::cout << codec.Decode(bits) << std::endl;
   }
 }
 
