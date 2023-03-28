@@ -26,6 +26,7 @@ int HammingDistance(const std::string& x, const std::string& y) {
 
 }  // namespace
 
+/*
 std::ostream& operator <<(std::ostream& os, const ViterbiCodec& codec) {
   os << "ViterbiCodec(" << codec.constraint() << ", {";
   const std::vector<int>& polynomials = codec.polynomials();
@@ -36,6 +37,7 @@ std::ostream& operator <<(std::ostream& os, const ViterbiCodec& codec) {
   }
   return os << "})";
 }
+*/
 
 int ReverseBits(int num_bits, int input) {
   assert(input < (1 << num_bits));

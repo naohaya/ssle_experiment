@@ -88,7 +88,7 @@ class ViterbiCodec {
   std::vector<std::string> outputs_;
 };
 
-std::ostream& operator <<(std::ostream& os, const ViterbiCodec& codec);
+//std::ostream& operator <<(std::ostream& os, const ViterbiCodec& codec);
 
 int ReverseBits(int num_bits, int input);
 
