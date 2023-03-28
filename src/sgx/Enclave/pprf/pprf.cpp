@@ -153,17 +153,20 @@ std::string PPRF::bitFlip(const std::string& inbits){
 
 /* converting from string to unit64_t */
 uint64_t PPRF::hexToDecimal(std::string sarg) {
-    unsigned int value;
-    uint64_t ret;
-    std::istringstream iss(sarg);
+    uint64_t ret = 0;
+    uint64_t base = 1;
+    int len = sarg.length();
 
-    iss >> hex >> value;
-
-/*    value << std::hex << iss; */
-
-//    cout << sarg << endl;
-
-    ret = static_cast<uint64_t>(value); 
+    for (int i = len - 1; i >= 0; i--) {
+        if (sarg[i] >= '0' && sarg[i] <= '9') {
+            ret += (sarg[i] - '0') * base;
+        } else if (sarg[i] >= 'a' && sarg[i] <= 'f') {
+            ret += (sarg[i] - 'a' + 10) * base;
+        } else if (sarg[i] >= 'A' && sarg[i] <= 'F') {
+            ret += (sarg[i] - 'A' + 10) * base;
+        }
+        base *= 16;
+    }
 
     return ret;
 }
@@ -188,17 +191,30 @@ std::vector<char> PPRF::hexToBinary (std::string inHex){
 }
 
 /* converting from binary vector to hex string */
-std::string PPRF::binaryToHex (std::string inBin) {
-    uint64_t num;
-    stringstream ss;
-    istringstream iss = istringstream(inBin);
+std::string PPRF::binaryToHex(std::string inBin) {
+    std::string hexStr = "";
+    int len = inBin.length();
 
-    iss >> num;
-    
-    ss << std::hex << num;
+    // Add leading zeros if necessary to make string length a multiple of 4
+    while (len % 4 != 0) {
+        inBin = "0" + inBin;
+        len++;
+    }
 
-    return ss.str();
+    // Convert binary to hex by processing 4 bits at a time
+    for (int i = 0; i < len; i += 4) {
+        uint8_t nibble = 0;
+        for (int j = 0; j < 4; j++) {
+            nibble = (nibble << 1) + (inBin[i+j] - '0');
+        }
+        if (nibble < 10) {
+            hexStr += (char)(nibble + '0');
+        } else {
+            hexStr += (char)(nibble - 10 + 'a');
+        }
+    }
 
+    return hexStr;
 }
 
 /* split vector in to a small vector of a certain length */
