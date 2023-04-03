@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        std::cout << "./node <local port>, <remote port>, <flag>" << std::endl;
+        std::cout << "./app <local port>, <remote port>, <flag>" << std::endl;
     }
 
     if (leader)
@@ -221,6 +221,8 @@ int main(int argc, char *argv[])
         thisNode.listen_as_server();
 
         inconnect = thisNode.accept_as_server();
+
+        std::cout << "Ready to accept incoming requrests" << std::endl;
 
         // registration of participants
         thisNode.receive_message(inconnect);
