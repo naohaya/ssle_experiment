@@ -200,6 +200,7 @@ int main(int argc, char *argv[])
         {
             /* This function also can display succeeded message */
             sgx_error_print(status);
+            sgx_error_print(stuatus2);
         }
 
         /* print ECALL result */
