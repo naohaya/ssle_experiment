@@ -1,3 +1,4 @@
+# This Makefile is based on helloSGX project.
 #
 # Copyright (C) 2011-2016 Intel Corporation. All rights reserved.
 #
@@ -85,6 +86,7 @@ CXX := /home/naohaya/work/obfuscation/Pluto-Obfuscator/install/bin/clang++ #for 
 LIBOBF := $(HOME)/work/obfuscation/obfuscator-llvm-forks/obfuscator-llvm/build/libLLVMObfuscator.so
 #OBFFLAGS := -fpass-plugin=$(LIBOBF)
 OBFFLAGS := -mllvm -mba -mllvm -fla-ex -mllvm -gle
+
 
 ######## App Settings ########
 
