@@ -20,7 +20,7 @@ class SSLE
 
         }
 
-        virtual int verifyLeader()
+        virtual static int verifyLeader()
         {
 
         }
