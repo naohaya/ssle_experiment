@@ -8,5 +8,5 @@ class SSLE
 
         virtual void electLeader();
 
-        virtual static int verifyLeader();
+        virtual int verifyLeader();
 };
