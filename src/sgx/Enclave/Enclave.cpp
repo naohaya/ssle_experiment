@@ -20,14 +20,14 @@ int ecall_test(const char *message, size_t message_len)
 int ecall_election(const int *num_nodes) //TODO: seckey should not be received here
 {	
 	std::string result;
-	char * ret;
+	char * ret = "hoge";
 	SSLE_Obfuscation ssleobf;
 
 	ssleobf.initialize(num_nodes);
 
-	ssleobf.electLeader();
+//	ssleobf.electLeader();
 
-	result = ssleobf.getPunctKey();
+//	result = ssleobf.getPunctKey();
 	memcpy(ret, result.c_str(), result.length());
 
 	ocall_print(ret);
