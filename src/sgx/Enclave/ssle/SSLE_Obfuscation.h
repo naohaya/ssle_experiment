@@ -8,7 +8,7 @@
 #include "../pprf/pprf.h"
 #include "../utils/utils.h"
 
-class SSLE_Obfuscation : public SSLE
+class SSLE_Obfuscation: public SSLE
 {
     private:
 //    vector<Node> nodes; // a list of participants.
