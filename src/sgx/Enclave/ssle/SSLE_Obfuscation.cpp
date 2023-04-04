@@ -3,7 +3,7 @@
 * Author: Naohiro Hayashibara
 * Created: Fri. 17 Mar. 2023
 */
-
+#include "SSLE.h"
 #include "SSLE_Obfuscation.h"
 
 using namespace std;
