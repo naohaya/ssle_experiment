@@ -9,7 +9,7 @@
 #include "../utils/utils.h"
 #include "SSLE.h"
 
-class SSLE_Obfuscation: public SSLE
+class SSLE_Obfuscation //: public SSLE
 {
     private:
 //    vector<Node> nodes; // a list of participants.
