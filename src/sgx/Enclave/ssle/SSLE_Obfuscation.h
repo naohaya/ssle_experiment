@@ -7,6 +7,7 @@
 //#include "Node.h"
 #include "../pprf/pprf.h"
 #include "../utils/utils.h"
+#include "SSLE.h"
 
 class SSLE_Obfuscation: public SSLE
 {
