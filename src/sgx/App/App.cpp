@@ -181,6 +181,7 @@ int main(int argc, char *argv[])
         int retval = -9999;
         const int num = 3;
         char *pkey;
+        int retval2 = -9999;
 
         std::cout << "Execute ECALL.\n"
                   << std::endl;
@@ -188,7 +189,7 @@ int main(int argc, char *argv[])
         sgx_status_t status = ecall_test(global_eid, &retval,
                                          message, message_len);
 
-        sgx_status_t status2 = ecall_election(global_eid, &pkey, &num); // for test
+        sgx_status_t status2 = ecall_election(global_eid, &retval2, &num); // for test
 
         if (status != SGX_SUCCESS)
         {
