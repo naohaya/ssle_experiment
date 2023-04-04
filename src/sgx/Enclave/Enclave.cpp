@@ -17,7 +17,7 @@ int ecall_test(const char *message, size_t message_len)
 }
 
 
-char * ecall_election(const int *num_nodes) //TODO: seckey should not be received here
+int ecall_election(const int *num_nodes) //TODO: seckey should not be received here
 {	
 	std::string result;
 	char * ret;
@@ -29,5 +29,7 @@ char * ecall_election(const int *num_nodes) //TODO: seckey should not be receive
 
 	result = ssleobf.getPunctKey();
 	memcpy(ret, result.c_str(), result.length());
-	return ret;
+
+	ocall_print(ret);
+	return 0;
 }
