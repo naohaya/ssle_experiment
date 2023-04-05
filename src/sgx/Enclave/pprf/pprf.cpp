@@ -141,11 +141,13 @@ std::string PPRF::bitFlip(const std::string& inbits){
         bits[pos] = '0';
     }
 
+    /* disable offset flip
     if (bits[(pos + offset) % insize] == '0') {
         bits[(pos + offset) % insize] = '1';
     } else {
         bits[(pos + offset) % insize] = '0';
     }
+    */
 
     return bits;
 
