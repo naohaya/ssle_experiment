@@ -31,5 +31,6 @@ class SSLE_Obfuscation //: public SSLE
         std::string getPunctKey();
         std::string getCommValue(int);
         std::string commit(std::string);
+        std::string depunct(std::string punct);
 
 };

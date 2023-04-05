@@ -58,6 +58,13 @@ string SSLE_Obfuscation::getPunctKey()
     return punctKey;
 }
 
+/* for debug */
+string SSLE_Obfuscation::depunct(string punct)
+{
+    PPRF pprf = PPRF();
+    return pprf.depuncturing(punct);
+}
+
 /* get a commit value correspoding to the given node ID (n) */
 string SSLE_Obfuscation::getCommValue(int n)
 {
