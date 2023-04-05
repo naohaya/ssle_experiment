@@ -29,7 +29,7 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 
 	result = ssleobf.getPunctKey();
 //	memcpy(ret, result.c_str(), result.length());
-
+	ocall_print(ssleobf.getRandKey().c_str());
 	ocall_print(result.c_str());
 	return 0;
 }
