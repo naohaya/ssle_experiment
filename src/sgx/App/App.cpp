@@ -191,16 +191,16 @@ int main(int argc, char *argv[])
 
         sgx_status_t status2 = ecall_election(global_eid, &retval2, &num); // for test
 
-        if (status != SGX_SUCCESS)
+        if (status2 != SGX_SUCCESS)
         {
-            sgx_error_print(status);
+            sgx_error_print(status2);
 
             return -1;
         }
         else
         {
             /* This function also can display succeeded message */
-            sgx_error_print(status);
+//            sgx_error_print(status);
             sgx_error_print(status2);
         }
 
