@@ -205,7 +205,7 @@ int main(int argc, char *argv[])
         }
 
         /* print ECALL result */
-        std::cout << "\nReturned integer from ECALL is: " << retval << std::endl;
+        std::cout << "\nReturned integer from ECALL is: " << retval2 << std::endl;
         std::cout << std::endl;
 
 
