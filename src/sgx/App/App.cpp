@@ -186,8 +186,8 @@ int main(int argc, char *argv[])
         std::cout << "Execute ECALL.\n"
                   << std::endl;
 
-        sgx_status_t status = ecall_test(global_eid, &retval,
-                                         message, message_len);
+//        sgx_status_t status = ecall_test(global_eid, &retval,
+//                                         message, message_len);
 
         sgx_status_t status2 = ecall_election(global_eid, &retval2, &num); // for test
 
