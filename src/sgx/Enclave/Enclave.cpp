@@ -8,6 +8,7 @@
 //#include "Node.h"
 //#include "pprf/pprf.h"
 #include "ssle/SSLE_Obfuscation.h"
+#include "pke/pke.h"
 
 int ecall_test(const char *message, size_t message_len)
 {
@@ -22,6 +23,8 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 	std::string result;
 	char * ret = "hoge";
 	SSLE_Obfuscation ssleobf;
+
+	create_rsa_pair();
 
 	ssleobf.initialize(num_nodes);
 
