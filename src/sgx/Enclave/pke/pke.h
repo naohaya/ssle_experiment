@@ -1,5 +1,5 @@
 #include "sgx_tcrypto.h"
-#include <cstdio>
+#include "stdio.h"
 #include <cstring>
 
 #define RSA_MOD_SIZE 1040
