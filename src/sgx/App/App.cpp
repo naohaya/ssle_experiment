@@ -19,6 +19,8 @@
 #include <sgx_urts.h>
 #include "error_print.h"
 
+#define RSA_PUBLIC_KEY_SIZE 1040 // the size of public key. this is from https://chromium.googlesource.com/chromiumos/platform/ec/+/master/include/rsa.h
+
 using namespace std;
 
 Node registration(std::string);
@@ -339,7 +341,7 @@ void ocall_print(const char *str)
 /* ocall_return_pubkey is for obtaining public key from enclave. */
 void ocall_return_pubkey(uint8_t* key_mod,long *key_exp){
   printf("Post/Ocall key-mod:: ");
-  for(int i = 0; i < RSA_PUBLIC_SIZE;i++)
-    printf("%"PRIu8",",key_mod[i]);
+  for(int i = 0; i < RSA_PUBLIC_KEY_SIZE;i++)
+    printf("%hhu,",key_mod[i]);
    printf("\n");
 }
