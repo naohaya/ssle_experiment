@@ -339,7 +339,7 @@ void ocall_print(const char *str)
 }
 
 /* ocall_return_pubkey is for obtaining public key from enclave. */
-void ocall_return_pubkey(uint8_t* key_mod,long *key_exp){
+void ocall_return_pubkey(uint8_t* key_mod,uint8_t *key_exp){
   printf("Post/Ocall key-mod:: ");
   for(int i = 0; i < RSA_PUBLIC_KEY_SIZE;i++)
     printf("%hhu,",key_mod[i]);
