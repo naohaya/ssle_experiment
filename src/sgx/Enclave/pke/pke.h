@@ -1,4 +1,5 @@
 #include "sgx_tcrypto.h"
+#include "Enclave_t.h"
 #include "stdio.h"
 #include <cstdio>
 #include <cstring>
