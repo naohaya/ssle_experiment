@@ -10,17 +10,17 @@
 class SSLE
 {
     public:
-        void initialize()
+        virtual void initialize()
         {
 
         }
 
-        void electLeader()
+        virtual void electLeader()
         {
 
         }
 
-        int verifyLeader()
+        virtual int verifyLeader()
         {
 
         }

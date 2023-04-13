@@ -7,6 +7,7 @@
 //#include "Node.h"
 #include "../pprf/pprf.h"
 #include "../utils/utils.h"
+#include "SSLE.h"
 
 class SSLE_Obfuscation //: public SSLE
 {
@@ -25,10 +26,11 @@ class SSLE_Obfuscation //: public SSLE
     public:
         void initialize(const int *);
         void electLeader();
-        static int verifyLeader();
+        int verifyLeader();
         std::string getRandKey();
         std::string getPunctKey();
         std::string getCommValue(int);
         std::string commit(std::string);
+        std::string depunct(std::string punct);
 
 };

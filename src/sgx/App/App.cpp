@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        std::cout << "./node <local port>, <remote port>, <flag>" << std::endl;
+        std::cout << "./app <local port>, <remote port>, <flag>" << std::endl;
     }
 
     if (leader)
@@ -181,29 +181,31 @@ int main(int argc, char *argv[])
         int retval = -9999;
         const int num = 3;
         char *pkey;
+        int retval2 = -9999;
 
         std::cout << "Execute ECALL.\n"
                   << std::endl;
 
-        sgx_status_t status = ecall_test(global_eid, &retval,
-                                         message, message_len);
+//        sgx_status_t status = ecall_test(global_eid, &retval,
+//                                         message, message_len);
 
-        sgx_status_t status2 = ecall_election(global_eid, &pkey, &num); // for test
+        sgx_status_t status2 = ecall_election(global_eid, &retval2, &num); // for test
 
-        if (status != SGX_SUCCESS)
+        if (status2 != SGX_SUCCESS)
         {
-            sgx_error_print(status);
+            sgx_error_print(status2);
 
             return -1;
         }
         else
         {
             /* This function also can display succeeded message */
-            sgx_error_print(status);
+//            sgx_error_print(status);
+            sgx_error_print(status2);
         }
 
         /* print ECALL result */
-        std::cout << "\nReturned integer from ECALL is: " << retval << std::endl;
+        std::cout << "\nReturned integer from ECALL is: " << retval2 << std::endl;
         std::cout << std::endl;
 
 
@@ -221,6 +223,8 @@ int main(int argc, char *argv[])
         thisNode.listen_as_server();
 
         inconnect = thisNode.accept_as_server();
+
+        std::cout << "Ready to accept incoming requrests" << std::endl;
 
         // registration of participants
         thisNode.receive_message(inconnect);

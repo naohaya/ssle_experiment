@@ -17,10 +17,10 @@ int ecall_test(const char *message, size_t message_len)
 }
 
 
-char * ecall_election(const int *num_nodes) //TODO: seckey should not be received here
+int ecall_election(const int *num_nodes) //TODO: seckey should not be received here
 {	
 	std::string result;
-	char * ret;
+	char * ret = "hoge";
 	SSLE_Obfuscation ssleobf;
 
 	ssleobf.initialize(num_nodes);
@@ -28,6 +28,12 @@ char * ecall_election(const int *num_nodes) //TODO: seckey should not be receive
 	ssleobf.electLeader();
 
 	result = ssleobf.getPunctKey();
-	memcpy(ret, result.c_str(), result.length());
-	return ret;
+//	memcpy(ret, result.c_str(), result.length());
+	
+	ocall_print(ssleobf.getRandKey().c_str()); // random key
+
+	ocall_print(result.c_str()); // punctured key 
+
+	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
+	return 0;
 }
