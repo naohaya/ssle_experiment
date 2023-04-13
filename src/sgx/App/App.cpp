@@ -23,6 +23,7 @@ using namespace std;
 
 Node registration(std::string);
 void ocall_print(const char *);
+void ocall_return_pubkey(uint8_t *, long *);
 
 sgx_enclave_id_t global_eid = 0; // enclave initialization
 
@@ -333,4 +334,12 @@ void ocall_print(const char *str)
     std::cout << str << std::endl;
 
     return;
+}
+
+/* ocall_return_pubkey is for obtaining public key from enclave. */
+void ocall_return_pubkey(uint8_t* key_mod,long *key_exp){
+  printf("Post/Ocall key-mod:: ");
+  for(int i = 0; i < RSA_PUBLIC_SIZE;i++)
+    printf("%"PRIu8",",key_mod[i]);
+   printf("\n");
 }
