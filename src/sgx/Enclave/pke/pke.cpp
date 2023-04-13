@@ -22,7 +22,7 @@ sgx_status_t create_rsa_pair()
 
     void *private_key = NULL;
 
-    sgx_status_t ret_create_private_key = sgx_create_rsa_priv2_key(n_byte_size, sizeof(e), (unsigned char *)&e, p_p, p_q, p_dmp1, p_dmq1, p_iqmp, &private_rsa);
+    sgx_status_t ret_create_private_key = sgx_create_rsa_priv2_key(n_byte_size, sizeof(e), (unsigned char *)&e, p_p, p_q, p_dmp1, p_dmq1, p_iqmp, &private_key);
 
     if (ret_create_private_key != SGX_SUCCESS)
     {
