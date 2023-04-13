@@ -46,7 +46,7 @@ sgx_status_t create_rsa_pair()
     printf("pre/ocall_mod::");
     for (int i = 0; i < RSA_MOD_SIZE; i++)
     {
-        printf("%" PRIu8 ",", ocall_mod[i]);
+        printf("%hhu,", ocall_mod[i]);
     }
     printf("\n");
     ocall_return_pubkey(ocall_mod, ocall_exp);
