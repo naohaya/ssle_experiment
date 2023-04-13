@@ -43,12 +43,15 @@ sgx_status_t create_rsa_pair()
     uint8_t *ocall_exp = (uint8_t *)malloc(sizeof(long));
     memcpy(ocall_mod, p_n, RSA_MOD_SIZE);
     memcpy(ocall_exp, &e, sizeof(long));
+
+    /*
     printf("pre/ocall_mod::");
     for (int i = 0; i < RSA_MOD_SIZE; i++)
     {
         printf("%hhu,", ocall_mod[i]);
     }
     printf("\n");
+    */
     ocall_return_pubkey(ocall_mod, ocall_exp);
     return SGX_SUCCESS;
 }
