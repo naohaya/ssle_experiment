@@ -11,5 +11,6 @@ enclave
 	{
 		/*These are OCALL defines.*/
 		void ocall_print([in, string]const char *str);
+    void ocall_return_pubkey([in, size=8]uint8_t *pkey, long *pkey_exp);
 	};
 };

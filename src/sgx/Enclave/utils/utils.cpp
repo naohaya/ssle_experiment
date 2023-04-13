@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <cstdint>
 //#include <sstream>
 // #include <boost/dynamic_bitset.hpp> /* corresponding to binStringtoDynamicBitset() */
 
@@ -94,6 +95,14 @@ std::bitset<64> binStringToBitset(const std::string &binaryString)
     ++index;
   }
   return bitset;
+}
+
+uint32_t ucharToUint32(unsigned char* data) {
+    uint32_t result = 0;
+    for (int i = 0; i < 4; i++) {
+        result |= (uint32_t)data[i] << (i * 8);
+    }
+    return result;
 }
 
 // using dynamic_bitset
