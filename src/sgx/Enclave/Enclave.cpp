@@ -42,7 +42,7 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 
 	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
 	//return 0;
-	return (int)retv; // for debug
+	return retv; // for debug
 }
 
 /*

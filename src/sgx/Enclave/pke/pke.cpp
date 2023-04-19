@@ -63,5 +63,5 @@ sgx_status_t create_rsa_pair()
     */
     ocall_return_pubkey(ocall_mod, ocall_exp);
     //return SGX_SUCCESS;
-    return sizeof(public_key); // for debug
+    return (sgx_status_t)sizeof(public_key); // for debug
 }
