@@ -1,6 +1,6 @@
 #include "pke.h"
-#include <stdlib.h> // for debug.
-
+#include <sstream> // for debug.
+#include <string> // for debug.
 sgx_status_t create_rsa_pair()
 {
     unsigned char p_n[RSA_MOD_SIZE];
@@ -46,7 +46,10 @@ sgx_status_t create_rsa_pair()
     memcpy(ocall_exp, &e, sizeof(long));
 
     ocall_print("Public Key size: "); // for debug
-    ocall_print(ltoa(sizeof(public_key))); // for debug
+    std::stringstream ss;
+    ss << sizeof(public_key);
+    std::string s = ss.str();
+    ocall_print((char *)s.c_str()); // for debug
 
     /*
     printf("pre/ocall_mod::");
