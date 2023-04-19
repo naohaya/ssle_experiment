@@ -41,8 +41,8 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 	ocall_print(result.c_str()); // punctured key 
 
 	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
-	//return 0;
-	return retv; // for debug
+	return 0;
+	//return retv; // for debug
 }
 
 /*
