@@ -1,4 +1,5 @@
 #include "pke.h"
+#include <stdlib.h> // for debug.
 
 sgx_status_t create_rsa_pair()
 {
@@ -45,7 +46,7 @@ sgx_status_t create_rsa_pair()
     memcpy(ocall_exp, &e, sizeof(long));
 
     ocall_print("Public Key size: "); // for debug
-    ocall_print((const char *)sizeof(public_key)); // for debug
+    ocall_print(ltoa(sizeof(public_key))); // for debug
 
     /*
     printf("pre/ocall_mod::");
