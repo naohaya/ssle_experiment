@@ -1,6 +1,6 @@
 #include "pke.h"
 #include <sstream> // for debug.
-#include <string> // for debug.
+#include <string.h> // for debug.
 sgx_status_t create_rsa_pair()
 {
     unsigned char p_n[RSA_MOD_SIZE];
