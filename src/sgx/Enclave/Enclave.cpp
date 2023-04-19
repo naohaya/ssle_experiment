@@ -10,6 +10,9 @@
 #include "ssle/SSLE_Obfuscation.h"
 #include "pke/pke.h"
 
+uint8_t *pubkey; //public key
+uint8_t *seckey; //secret key
+
 int ecall_test(const char *message, size_t message_len)
 {
 	ocall_print(message);
@@ -40,3 +43,10 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
 	return 0;
 }
+
+/*
+int ecall_create_rsa_key_pair(uint8_t *pkey)
+{
+
+}
+*/

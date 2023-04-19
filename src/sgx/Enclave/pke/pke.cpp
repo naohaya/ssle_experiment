@@ -44,6 +44,9 @@ sgx_status_t create_rsa_pair()
     memcpy(ocall_mod, p_n, RSA_MOD_SIZE);
     memcpy(ocall_exp, &e, sizeof(long));
 
+    ocall_print("Public Key size: "); // for debug
+    ocall_print(sizeof(public_key)); // for debug
+
     /*
     printf("pre/ocall_mod::");
     for (int i = 0; i < RSA_MOD_SIZE; i++)
