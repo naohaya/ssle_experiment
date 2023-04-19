@@ -45,11 +45,13 @@ sgx_status_t create_rsa_pair()
     memcpy(ocall_mod, p_n, RSA_MOD_SIZE);
     memcpy(ocall_exp, &e, sizeof(long));
 
+/*
     ocall_print("Public Key size: "); // for debug
     std::stringstream ss;
     ss << sizeof(public_key);
     std::string s = ss.str();
     ocall_print((char *)s.c_str()); // for debug
+    */
 
     /*
     printf("pre/ocall_mod::");
@@ -60,5 +62,6 @@ sgx_status_t create_rsa_pair()
     printf("\n");
     */
     ocall_return_pubkey(ocall_mod, ocall_exp);
-    return SGX_SUCCESS;
+    //return SGX_SUCCESS;
+    return sizeof(public_key); // for debug
 }
