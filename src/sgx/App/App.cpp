@@ -215,6 +215,10 @@ int main(int argc, char *argv[])
             sgx_error_print(status3);
         }
 
+        if (public_key == NULL) {
+            std::cout << "public key is NULL" << std::endl;
+        }
+
 
         /* print ECALL result */
         std::cout << "\nReturned integer from ECALL is: " << retval2 << std::endl;
