@@ -45,7 +45,7 @@ sgx_status_t create_rsa_pair(void *pubk, void *prik)
     memcpy(ocall_exp, &e, sizeof(long));
 
     // copying the key pairs
-    pubk = (void *)malloc(KEY_SIZE));
+    pubk = (void *)malloc(KEY_SIZE);
     prik = (void *)malloc(KEY_SIZE);
     memcpy(pubk, public_key, KEY_SIZE);
     memcpy(prik, private_key, KEY_SIZE);
