@@ -15,7 +15,14 @@ int encrypt(void *pkey, const unsigned char *inData, size_t in_size, unsigned ch
 // for debug
     if (status == SGX_SUCCESS) {
         return 0;
-    } else {
+    } else if (status == SGX_ERROR_INVALID_PARAMETER) {
+        return -2;
+    } else if (status == SGX_ERROR_OUT_OF_MEMORY) {
+        return -3;
+    } else if (status == SGX_ERROR_UNEXPECTED) {
+        return -4;
+    }
+    else {
         return -1;
     }
     
