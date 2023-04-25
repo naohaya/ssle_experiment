@@ -6,12 +6,13 @@ enclave
 		/*These are ECALL defines.*/
 		public int ecall_test([in, size=message_len]const char *message,
 			size_t message_len);
-                public int ecall_election([in, size=8]const int *participants);
+        public int ecall_election([in, size=8]const int *participants);
+		public int ecall_create_rsa_key_pair([out, size=8]void *pkey);
 	};
 	untrusted
 	{
 		/*These are OCALL defines.*/
 		void ocall_print([in, string]const char *str);
-                 void ocall_return_pubkey([in, size=8]uint8_t *pkey, [in, size=8]uint8_t *pkey_exp);
+        void ocall_return_pubkey([in, size=8]uint8_t *pkey, [in, size=8]uint8_t *pkey_exp);
 	};
 };

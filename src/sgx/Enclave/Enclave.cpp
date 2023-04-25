@@ -10,8 +10,8 @@
 #include "ssle/SSLE_Obfuscation.h"
 #include "pke/pke.h"
 
-uint8_t *pubkey; //public key
-uint8_t *seckey; //secret key
+void *pubkey = (void *)malloc(KEY_SIZE); //public key
+void *seckey = (void *)malloc(KEY_SIZE); //secret key
 
 int ecall_test(const char *message, size_t message_len)
 {
@@ -27,7 +27,7 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 	char * ret = "hoge";
 	SSLE_Obfuscation ssleobf;
 
-	sgx_status_t retv = create_rsa_pair();
+//	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
 
 	ssleobf.initialize(num_nodes);
 
@@ -45,9 +45,11 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 	//return retv; // for debug
 }
 
-/*
-int ecall_create_rsa_key_pair(uint8_t *pkey)
+// obtain a RSA public key
+int ecall_create_rsa_key_pair(void *pkey)
 {
+	create_rsa_pair(pubkey, seckey);
+	memcpy(pkey, pubkey, KEY_SIZE);
 
+	return 0;
 }
-*/

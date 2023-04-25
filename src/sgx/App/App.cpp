@@ -20,6 +20,7 @@
 #include "error_print.h"
 
 #define RSA_PUBLIC_KEY_SIZE 1040 // the size of public key. this is from https://chromium.googlesource.com/chromiumos/platform/ec/+/master/include/rsa.h
+#define KEY_SIZE 8
 
 using namespace std;
 
@@ -27,6 +28,7 @@ Node registration(std::string);
 void ocall_print(const char *);
 void ocall_return_pubkey(uint8_t *, long *);
 
+void *public_key = (void *)malloc(KEY_SIZE);
 sgx_enclave_id_t global_eid = 0; // enclave initialization
 
 /* Enclave initialization */
@@ -206,6 +208,13 @@ int main(int argc, char *argv[])
 //            sgx_error_print(status);
             sgx_error_print(status2);
         }
+
+        sgx_status_t status3 = ecall_create_rsa_key_pair(global_eid, &retval, public_key);
+        if (status3 != SGX_SUCCESS)
+        {
+            sgx_error_print(status3);
+        }
+
 
         /* print ECALL result */
         std::cout << "\nReturned integer from ECALL is: " << retval2 << std::endl;
