@@ -7,4 +7,4 @@
 #define RSA_MOD_SIZE 1040
 #define KEY_SIZE 8
 
-sgx_status_t create_rsa_pair();
+sgx_status_t create_rsa_pair(void *, void *);
