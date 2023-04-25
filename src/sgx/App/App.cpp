@@ -194,6 +194,19 @@ int main(int argc, char *argv[])
 //        sgx_status_t status = ecall_test(global_eid, &retval,
 //                                         message, message_len);
 
+        sgx_status_t status3 = ecall_create_rsa_key_pair(global_eid, &retval, public_key);
+        if (status3 != SGX_SUCCESS)
+        {
+            sgx_error_print(status3);
+        }
+
+        if (public_key == NULL) {
+            std::cout << "public key is NULL" << std::endl;
+        } else {
+            std::cout << "public key: " << (char **)public_key << std::endl;
+        }
+
+
         sgx_status_t status2 = ecall_election(global_eid, &retval2, &num); // for test
 
         if (status2 != SGX_SUCCESS)
@@ -209,17 +222,6 @@ int main(int argc, char *argv[])
             sgx_error_print(status2);
         }
 
-        sgx_status_t status3 = ecall_create_rsa_key_pair(global_eid, &retval, public_key);
-        if (status3 != SGX_SUCCESS)
-        {
-            sgx_error_print(status3);
-        }
-
-        if (public_key == NULL) {
-            std::cout << "public key is NULL" << std::endl;
-        } else {
-            std::cout << "public key: " << (char **)public_key << std::endl;
-        }
 
 
         /* print ECALL result */
