@@ -9,6 +9,7 @@
 //#include "pprf/pprf.h"
 #include "ssle/SSLE_Obfuscation.h"
 #include "pke/pke.h"
+#include "pke/crypto.h"
 
 void *pubkey = (void *)malloc(KEY_SIZE); //public key
 void *seckey = (void *)malloc(KEY_SIZE); //secret key
@@ -27,6 +28,10 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 	char * ret = "hoge";
 	SSLE_Obfuscation ssleobf;
 
+	/* encryption test */
+	unsigned char *outData;
+	size_t *outlen;
+
 //	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
 
 	ssleobf.initialize(num_nodes);
@@ -35,12 +40,17 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 
 	result = ssleobf.getPunctKey();
 //	memcpy(ret, result.c_str(), result.length());
+
+	/* encryption test */
+	encrypt(pubkey, result.c_str(), result.length(), outData, outlen);
+
+	ocall_print((char *)outlen);
 	
-	ocall_print(ssleobf.getRandKey().c_str()); // random key
+//	ocall_print(ssleobf.getRandKey().c_str()); // random key
 
-	ocall_print(result.c_str()); // punctured key 
+//	ocall_print(result.c_str()); // punctured key 
 
-	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
+//	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
 	return 0;
 	//return retv; // for debug
 }
