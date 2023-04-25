@@ -28,7 +28,7 @@ Node registration(std::string);
 void ocall_print(const char *);
 void ocall_return_pubkey(uint8_t *, long *);
 
-void *public_key; // = (void *)malloc(KEY_SIZE);
+void *public_key = (void *)malloc(KEY_SIZE);
 sgx_enclave_id_t global_eid = 0; // enclave initialization
 
 /* Enclave initialization */
