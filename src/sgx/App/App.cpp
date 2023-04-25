@@ -217,6 +217,8 @@ int main(int argc, char *argv[])
 
         if (public_key == NULL) {
             std::cout << "public key is NULL" << std::endl;
+        } else {
+            std::cout << (char *)public_key << std::endl;
         }
 
 
