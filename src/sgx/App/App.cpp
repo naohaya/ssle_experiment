@@ -215,6 +215,8 @@ int main(int argc, char *argv[])
             sgx_error_print(status3);
         }
 
+        printf("key size: %d\n", sizeof(public_key));
+
 
         /* print ECALL result */
         std::cout << "\nReturned integer from ECALL is: " << retval2 << std::endl;
