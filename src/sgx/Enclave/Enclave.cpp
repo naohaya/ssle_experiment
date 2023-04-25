@@ -43,7 +43,7 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 
 	/* encryption test */
 	const unsigned char *inData = (unsigned char *)result.c_str();
-	encrypt(pubkey, inData, result.length(), outData, outlen);
+	int retv = encrypt(pubkey, inData, result.length(), outData, outlen);
 
 //	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
@@ -54,9 +54,8 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 
 //	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
 //	return 0;
-	int retv = *outlen;
-	return retv;
-	//return retv; // for debug
+	return retv; // for debug.
+
 }
 
 // obtain a RSA public key

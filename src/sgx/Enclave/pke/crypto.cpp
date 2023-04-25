@@ -1,6 +1,6 @@
 #include "crypto.h"
 
-void encrypt(void *pkey, const unsigned char *inData, size_t in_size, unsigned char *outData, size_t *out_size)
+int encrypt(void *pkey, const unsigned char *inData, size_t in_size, unsigned char *outData, size_t *out_size)
 {
     sgx_status_t status = sgx_rsa_pub_encrypt_sha256(
         pkey, 
@@ -9,9 +9,11 @@ void encrypt(void *pkey, const unsigned char *inData, size_t in_size, unsigned c
         inData, 
         in_size
     ); 
+
+    return status;
 }
 
-void decrypt(void *skey, const unsigned char *inData, size_t in_size, unsigned char *outData, size_t *out_size)
+int decrypt(void *skey, const unsigned char *inData, size_t in_size, unsigned char *outData, size_t *out_size)
 {
     sgx_status_t status = sgx_rsa_priv_decrypt_sha256(
         skey,
@@ -20,4 +22,6 @@ void decrypt(void *skey, const unsigned char *inData, size_t in_size, unsigned c
         inData,
         in_size
     );
+
+    return status;
 }
