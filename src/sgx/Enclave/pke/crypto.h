@@ -5,5 +5,5 @@
 #include <stdlib.h>
 
 
-void encrypt(void *, const unsigned char *, size_t, unsigned char *, size_t *);
-void decrypt(void *, const unsigned char *, size_t, unsigned char *, size_t *);
+int encrypt(void *, const unsigned char *, size_t, unsigned char *, size_t *);
+int decrypt(void *, const unsigned char *, size_t, unsigned char *, size_t *);
