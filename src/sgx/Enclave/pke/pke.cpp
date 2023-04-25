@@ -1,6 +1,6 @@
 #include "pke.h"
 
-sgx_status_t create_rsa_pair(void *public, void *private)
+sgx_status_t create_rsa_pair(void *pubk, void *prik)
 {
     unsigned char p_n[RSA_MOD_SIZE];
     unsigned char p_d[RSA_MOD_SIZE];
@@ -45,10 +45,10 @@ sgx_status_t create_rsa_pair(void *public, void *private)
     memcpy(ocall_exp, &e, sizeof(long));
 
     // copying the key pairs
-    public = (void *)malloc(KEY_SIZE));
-    private = (void *)malloc(KEY_SIZE);
-    memcpy(public, public_key, KEY_SIZE);
-    memcpy(private, private_key, KEY_SIZE);
+    pubk = (void *)malloc(KEY_SIZE));
+    prik = (void *)malloc(KEY_SIZE);
+    memcpy(pubk, public_key, KEY_SIZE);
+    memcpy(prik, private_key, KEY_SIZE);
 
     /*
     printf("pre/ocall_mod::");
