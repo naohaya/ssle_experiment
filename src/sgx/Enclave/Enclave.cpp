@@ -42,7 +42,8 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* encryption test */
-	encrypt(pubkey, result.c_str(), result.length(), outData, outlen);
+	const unsigned char *inData = result.c_str();
+	encrypt(pubkey, inData, result.length(), outData, outlen);
 
 	ocall_print((char *)outlen);
 	
