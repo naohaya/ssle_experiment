@@ -118,7 +118,7 @@ OBFFLAGS :=
 ######## Enclave Settings ########
 
 WOLF_LIB_Enclave_PATH = /home/sgx/wolfssl/IDE/LINUX-SGX
-WOLF_LIB_Enclave = wolfssl.sgx.static.lib
+WOLF_LIB_Enclave = 
 
 Enclave_Version_Script := Enclave/Enclave_debug.lds
 ifeq ($(SGX_MODE), HW)
