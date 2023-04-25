@@ -1,4 +1,6 @@
 #include "crypto.h"
+#include "Enclave_t.h" // for debug
+#include <sgx_trts.h> // for debug
 
 int encrypt(void *pkey, const unsigned char *inData, size_t in_size, unsigned char *outData, size_t *out_size)
 {
@@ -11,12 +13,10 @@ int encrypt(void *pkey, const unsigned char *inData, size_t in_size, unsigned ch
     ); 
 
 // for debug
-    if (pkey == NULL) {
-        return -2;
-    } else if(outData == NULL) {
-        return -1;
-    } else {
+    if (status == SGX_SUCCESS) {
         return 0;
+    } else {
+        return -1;
     }
     
 }
