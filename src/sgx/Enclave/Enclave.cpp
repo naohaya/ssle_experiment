@@ -45,6 +45,7 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 	const unsigned char *inData = (unsigned char *)result.c_str();
 	encrypt(pubkey, inData, result.length(), outData, outlen);
 
+	ocall_print(outData);
 	ocall_print((char *)outlen);
 	
 //	ocall_print(ssleobf.getRandKey().c_str()); // random key

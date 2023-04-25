@@ -58,7 +58,7 @@ sgx_status_t create_rsa_pair(void *pubk, void *prik)
     }
     printf("\n");
     */
-    ocall_return_pubkey(ocall_mod, ocall_exp);
+    // ocall_return_pubkey(ocall_mod, ocall_exp);
     return SGX_SUCCESS;
     //return (sgx_status_t)sizeof(public_key); // for debug
 }
