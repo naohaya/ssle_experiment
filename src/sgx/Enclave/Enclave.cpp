@@ -21,6 +21,14 @@ int ecall_test(const char *message, size_t message_len)
 	return 31337;
 }
 
+int ecall_get_key(char *keyout)
+{
+	SSLE_Obfuscation ssleobf;
+	std::string keystring = ssleobf.get_key();
+	memcpy(keyout, keystring.c_str(), keystring.length());
+
+	return 0;
+}
 
 int ecall_election(const int *num_nodes) //TODO: seckey should not be received here
 {	

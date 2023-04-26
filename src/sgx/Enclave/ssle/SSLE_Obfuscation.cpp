@@ -18,6 +18,17 @@ void SSLE_Obfuscation::initialize(const int *participants)
 
 }
 
+std::string SSLE_Obfuscation::get_key()
+{   
+    std::string prfkey;
+    PPRF pprf = PPRF();
+
+    prfkey = pprf.prf(&secret, &lcg, &hash);
+
+    return prfkey;
+
+}
+
 void SSLE_Obfuscation::electLeader()
 {
     uint32_t rand_value;

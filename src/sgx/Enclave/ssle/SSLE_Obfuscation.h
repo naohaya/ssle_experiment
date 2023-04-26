@@ -25,6 +25,7 @@ class SSLE_Obfuscation //: public SSLE
 
     public:
         void initialize(const int *);
+        std::string get_key();
         void electLeader();
         int verifyLeader();
         std::string getRandKey();
