@@ -28,6 +28,11 @@ uint32_t stringToUint32(std::string binaryString)
   return uint32Num;
 }
 
+/* convert binary string to uint64_t */
+uint64_t stringToUint64(std::string binaryString) {
+    return std::bitset<64>(binaryString).to_ullong();
+}
+
 // uint32_tを2進数のstringに変換する関数
 std::string uint32ToBinString(uint32_t num)
 {
