@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
         size_t message_len = strlen(message);
         int retval = -9999;
         const int num = 3;
-        uint64_t *pkey; // pprf key
+        uint64_t *pkey = (uint64_t *)malloc(sizeof(uint64_t)); // pprf key
         int retval2 = -9999;
 
         std::cout << "Execute ECALL.\n"
