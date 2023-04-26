@@ -24,7 +24,8 @@ public:
     PPRF(){}
     uint64_t hexToDecimal(std::string); // converting from hex string to decimal value (uint64_t)
     std::vector<char> hexToBinary(std::string); // converting from hex string to Binary array (vector<char>)
-    std::string prf(uint64_t *, uint64_t *, uint64_t *); // pseudo-random function
+    std::string prf_string(uint64_t *, uint64_t *, uint64_t *); // pseudo-random function returns PRF value in string
+    uint64_t prf(uint64_t *, uint64_t *, uint64_t *); // pseudo-random function
     std::string puncturing(std::string); // puncturing the bit string by convolutional coding
     std::string depuncturing(std::string); // depuncturing the bit string by viterbi decorder
     std::string decimalToBinary(uint64_t); // converting from decimal value (uint64_t) to binary string
@@ -40,7 +41,7 @@ private:
 
 
 /* pseudo-random function */
-std::string PPRF::prf(uint64_t *seed, uint64_t *lcg, uint64_t *hash){        
+std::string PPRF::prf_string(uint64_t *seed, uint64_t *lcg, uint64_t *hash){        
     uint64_t ret = 0;
     uint64_t i;
     // generating a random value by prf
@@ -51,6 +52,19 @@ std::string PPRF::prf(uint64_t *seed, uint64_t *lcg, uint64_t *hash){
     return align(decimalToBinary(ret));
 
 }
+
+uint64_t PPRF::prf(uint64_t *seed, uint64_t *lcg, uint64_t *hash){        
+    uint64_t ret = 0;
+    uint64_t i;
+    // generating a random value by prf
+    for ( i = 0; i < ( 1ULL << 28); i++) {
+        ret = prvhash_core64(seed, lcg, hash);
+    }    
+
+    return ret;
+
+}
+
 
 /* puncturing a random value bit string using convolutional erasure code + bit flips */
 std::string PPRF::puncturing(std::string rvalue) {

@@ -18,9 +18,9 @@ void SSLE_Obfuscation::initialize(const int *participants)
 
 }
 
-std::string SSLE_Obfuscation::get_key()
+uint64_t SSLE_Obfuscation::get_key()
 {   
-    std::string prfkey;
+    uint64_t prfkey;
     PPRF pprf = PPRF();
 
     prfkey = pprf.prf(&secret, &lcg, &hash);
@@ -35,7 +35,7 @@ void SSLE_Obfuscation::electLeader()
     PPRF pprf = PPRF();
 
     /* electing a leader */
-    randKey = pprf.prf(&secret, &lcg, &hash); // obtain a random key.
+    randKey = pprf.prf_string(&secret, &lcg, &hash); // obtain a random key.
     punctKey = pprf.puncturing(randKey); // obtain a punctured key.
 
     /* leader election in randomized way */

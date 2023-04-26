@@ -21,15 +21,14 @@ int ecall_test(const char *message, size_t message_len)
 	return 31337;
 }
 
-int ecall_get_key(char *keyout)
+int ecall_get_key(uint64_t *keyout)
 {
 	SSLE_Obfuscation ssleobf;
-	std::string keystring = ssleobf.get_key();
+	uint64_t prfkey = ssleobf.get_key();
 
 //	ocall_print(keystring.c_str());
 
-	keyout = new char[keystring.size() + 1];
-	keystring.copy(keyout, keystring.length());
+	memcpy(keyout, prfkey, sizeof(uint64_t));
 
 	return 0;
 }

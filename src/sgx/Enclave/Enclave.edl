@@ -8,7 +8,7 @@ enclave
 			size_t message_len);
         public int ecall_election([in, size=8]const int *participants);
 		public int ecall_create_rsa_key_pair([out, size=8]void *pkey);
-		public int ecall_get_key([out, size=8]char *keyout);
+		public int ecall_get_key([out, size=8]uint64_t *keyout);
 	};
 	untrusted
 	{
