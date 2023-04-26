@@ -303,11 +303,13 @@ int main(int argc, char *argv[])
         remoteNode.receive_message();
         std::string received = remoteNode.get_message();
         std::cout << "Client get_messages(): " << received << "(" << received.length() << ")" << std::endl;
+        std::cout << "as uint32_t: " << stringToUint32(received) << std::endl;
+
 
         // correction of the received punctured key
-        int remain = received.length() % 18;
-        received.erase(received.length() - remain, remain);
-        std::cout << "corrected string: " << received << "(" << received.length() << ")" << std::endl;
+        // int remain = received.length() % 18;
+        // received.erase(received.length() - remain, remain);
+        // std::cout << "corrected string: " << received << "(" << received.length() << ")" << std::endl;
 
         char c_str[162];
         remoteNode.receive_message();
