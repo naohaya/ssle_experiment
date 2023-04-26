@@ -270,7 +270,7 @@ int main(int argc, char *argv[])
         //str = punct;
         str = (char *)prfkey;
         thisNode.send_message(inconnect, str, str.length(), 0); // send message to participants
-        std::cout << "Leader sent: " << str << "(" << str.length() << ")" << std::endl;
+        std::cout << "Leader sent prfkey: " << str << "(" << str.length() << ")" << std::endl;
 
         // send committed value
         comm = "test";
