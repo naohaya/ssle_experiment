@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#include <cstring>
 //#include <iostream>
 //#include <vector>
 //#include "Node.h"
@@ -27,7 +26,7 @@ int ecall_get_key(char *keyout)
 	SSLE_Obfuscation ssleobf;
 	std::string keystring = ssleobf.get_key();
 	keyout = new char[keystring.size() + 1];
-	std::strcpy(keyout, keystring.c_str);
+	keystring.copy(keyout, keystring.length());
 
 	return 0;
 }
