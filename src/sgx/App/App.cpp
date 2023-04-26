@@ -18,6 +18,7 @@
 #include "Enclave_u.h"
 #include <sgx_urts.h>
 #include "error_print.h"
+#include "utils/utils.h"
 
 #define RSA_PUBLIC_KEY_SIZE 1040 // the size of public key. this is from https://chromium.googlesource.com/chromiumos/platform/ec/+/master/include/rsa.h
 #define KEY_SIZE 8
@@ -268,7 +269,7 @@ int main(int argc, char *argv[])
 
         // send information to participants
         //str = punct;
-        str = (char *)prfkey;
+        str = uint32ToBinString((uint32_t)*prfkey);
         thisNode.send_message(inconnect, str, str.length(), 0); // send message to participants
         std::cout << "Leader sent prfkey: " << str << "(" << str.length() << ")" << std::endl;
 
