@@ -274,9 +274,9 @@ int main(int argc, char *argv[])
         std::cout << "Leader sent prfkey: " << str << "(" << str.length() << ")" << std::endl;
 
         // send committed value
-        comm = "test";
-        thisNode.send_message(inconnect, comm, comm.length(), 0); // send message to participants
-        std::cout << "Leader sent: " << comm << "(" << comm.length() << ")" << std::endl;
+        // comm = "test";
+        // thisNode.send_message(inconnect, comm, comm.length(), 0); // send message to participants
+        // std::cout << "Leader sent: " << comm << "(" << comm.length() << ")" << std::endl;
 
         thisNode.receive_message(inconnect);
         str = thisNode.get_message();
