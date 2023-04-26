@@ -28,7 +28,7 @@ int ecall_get_key(char *keyout)
 
 	ocall_print(keystring.c_str());
 
-	keyout = (char *)malloc(8)
+	keyout = (char *)malloc(8);
 	keystring.copy(keyout, 8);
 
 	return 0;
