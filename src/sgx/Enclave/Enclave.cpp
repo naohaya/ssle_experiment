@@ -28,8 +28,8 @@ int ecall_get_key(char *keyout)
 
 	ocall_print(keystring.c_str());
 
-	keyout = new char[keystring.size() + 1];
-	keystring.copy(keyout, keystring.length());
+	keyout = (char *)malloc(8)
+	keystring.copy(keyout, 8);
 
 	return 0;
 }
