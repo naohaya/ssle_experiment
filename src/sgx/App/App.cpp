@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
 //        sgx_status_t status = ecall_test(global_eid, &retval,
 //                                         message, message_len);
 
-        sgx_status_t status4 = ecall_get_key(pkey);
+        sgx_status_t status4 = ecall_get_key(global_eid, &retval, pkey);
         std::cout << "pkey: " << pkey << std::endl;
 
         sgx_status_t status3 = ecall_create_rsa_key_pair(global_eid, &retval, public_key);
