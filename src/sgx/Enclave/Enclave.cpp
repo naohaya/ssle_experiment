@@ -25,6 +25,8 @@ int ecall_get_key(char *keyout)
 {
 	SSLE_Obfuscation ssleobf;
 	std::string keystring = ssleobf.get_key();
+	
+
 	keyout = new char[keystring.size() + 1];
 	keystring.copy(keyout, keystring.length());
 
