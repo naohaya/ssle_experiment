@@ -269,7 +269,7 @@ int main(int argc, char *argv[])
 
         // send information to participants
         //str = punct;
-        str = uint32ToBinString((uint32_t)*prfkey);
+        str = uint64ToBinString(*prfkey);
         thisNode.send_message(inconnect, str, str.length(), 0); // send message to participants
         std::cout << "Leader sent prfkey: " << str << "(" << str.length() << ")" << std::endl;
 
