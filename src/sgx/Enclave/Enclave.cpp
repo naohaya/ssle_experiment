@@ -28,7 +28,7 @@ int ecall_get_key(uint64_t *keyout)
 
 //	ocall_print(keystring.c_str());
 
-	memcpy(keyout, prfkey, sizeof(uint64_t));
+	memcpy(keyout, &prfkey, sizeof(uint64_t));
 
 	return 0;
 }
