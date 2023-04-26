@@ -28,6 +28,11 @@ uint64_t SSLE_Obfuscation::get_key()
     return prfkey;
 
 }
+void SSLE_Obfuscation::electLeader(uint64_t sec)
+{
+    secret = sec;
+    electLeader();
+}
 
 void SSLE_Obfuscation::electLeader()
 {
