@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
         size_t message_len = strlen(message);
         int retval = -9999;
         const int num = 3;
-        uint64_t *pkey = (uint64_t *)malloc(sizeof(uint64_t)); // pprf key
+        uint64_t *prfkey = (uint64_t *)malloc(sizeof(uint64_t)); // pprf key
         int retval2 = -9999;
 
         std::cout << "Execute ECALL.\n"
@@ -194,8 +194,9 @@ int main(int argc, char *argv[])
 //        sgx_status_t status = ecall_test(global_eid, &retval,
 //                                         message, message_len);
 
-        sgx_status_t status4 = ecall_get_key(global_eid, &retval, pkey);
-        std::cout << "pkey: " << *pkey << std::endl;
+        /* 1) Obtaining an (encrypted) (P)PRF key */
+        sgx_status_t status4 = ecall_get_key(global_eid, &retval, prfkey);
+        std::cout << "pkey: " << *prfkey << std::endl;
         /*
         if (status4 != SGX_SUCCESS)
         {
@@ -246,7 +247,8 @@ int main(int argc, char *argv[])
 
         /* ends ECALL */
 
-
+        /* communication with other nodes */
+        
         thisNode.initialization();
 
         thisNode.listen_as_server();
@@ -265,7 +267,8 @@ int main(int argc, char *argv[])
         // decide the next leader TODO
 
         // send information to participants
-        str = punct;
+        //str = punct;
+        str = prfkey;
         thisNode.send_message(inconnect, str, str.length(), 0); // send message to participants
         std::cout << "Leader sent: " << str << "(" << str.length() << ")" << std::endl;
 
