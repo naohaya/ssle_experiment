@@ -13,10 +13,16 @@ void SSLE_Obfuscation::initialize(const uint64_t *prfkey, const int *participant
 {
     // secure key should be generated in Enclave.
 //    nodes = participants;
-    num = *participants;
+
     secret = *prfkey;
+    initialize(participants);
 
 
+}
+
+void SSLE_Obfuscation::initialize(const int *participants)
+{
+    num = *participants;
 }
 
 uint64_t SSLE_Obfuscation::get_key()
