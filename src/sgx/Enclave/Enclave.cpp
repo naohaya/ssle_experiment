@@ -33,7 +33,7 @@ int ecall_get_key(uint64_t *keyout)
 	return 0;
 }
 
-int ecall_election(const int *num_nodes) //TODO: seckey should not be received here
+int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey should not be received here
 {	
 	std::string result;
 	char * ret = "hoge";
@@ -45,7 +45,7 @@ int ecall_election(const int *num_nodes) //TODO: seckey should not be received h
 
 //	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
 
-	ssleobf.initialize(num_nodes);
+	ssleobf.initialize(prfkey, num_nodes);
 
 	ssleobf.electLeader();
 

@@ -218,7 +218,7 @@ int main(int argc, char *argv[])
         }
 
 
-        sgx_status_t status2 = ecall_election(global_eid, &retval2, &num); // for test
+        sgx_status_t status2 = ecall_election(global_eid, &retval2, prfkey, &num); // for test
 
         if (status2 != SGX_SUCCESS)
         {

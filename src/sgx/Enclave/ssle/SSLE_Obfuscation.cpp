@@ -9,11 +9,12 @@
 using namespace std;
 
 
-void SSLE_Obfuscation::initialize(const int *participants)
+void SSLE_Obfuscation::initialize(const uint64_t *prfkey, const int *participants)
 {
     // secure key should be generated in Enclave.
 //    nodes = participants;
     num = *participants;
+    secret = *prfkey;
 
 
 }
