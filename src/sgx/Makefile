@@ -139,7 +139,7 @@ else
 endif
 Crypto_Library_Name := sgx_tcrypto
 
-Enclave_Cpp_Files := Enclave/Enclave.cpp $(wildcard Enclave/utils/*.cpp) $(wildcard Enclave/pke/*.cpp) $(wildcard Enclave/pprf/*.cpp) $(wildcard Enclave/ssle/*.cpp) 
+Enclave_Cpp_Files := Enclave/Enclave.cpp $(wildcard Enclave/utils/*.cpp) $(wildcard Enclave/crypto/*.cpp) $(wildcard Enclave/pke/*.cpp) $(wildcard Enclave/pprf/*.cpp) $(wildcard Enclave/ssle/*.cpp) 
 Enclave_Include_Paths := -IEnclave -I$(SGX_SDK)/include -I$(SGX_SDK)/include/libcxx -I$(SGX_SDK)/include/tlibc -I../../libs -IEnclave/pprf -IEnclave/ssle -IEnclave/utils  
 
 Enclave_C_Flags := -nostdinc -fvisibility=hidden -fpie -fstack-protector -fno-builtin-printf $(Enclave_Include_Paths)
