@@ -59,10 +59,10 @@ int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey 
 
 	const uint8_t *inData = (uint8_t *)ret;
 	uint8_t outData[BUFFLEN] = {0};
-	sgx_aes_ctr_128bit_key_t key; 
+	sgx_aes_ctr_128bit_key_t *key; 
 	key = create_aes_key();
 
-	encrypt_aes(&key, inData, sizeof(uint8_t), outData);
+	encrypt_aes(key, inData, sizeof(uint8_t), outData);
 
 	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
