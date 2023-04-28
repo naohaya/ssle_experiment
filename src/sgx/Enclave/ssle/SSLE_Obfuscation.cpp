@@ -94,6 +94,13 @@ string SSLE_Obfuscation::getCommValue(int n)
     return comm_values[n];
 }
 
+uint64_t * SSLE_Obfuscation::commit(uint64_t *data, uint64_t *prfkey)
+{
+    uint64_t *cmtdata = *data ^ *prfkey;
+
+    return cmtdata;
+}
+
 string SSLE_Obfuscation::commit(string val)
 {
     char rand[10];
