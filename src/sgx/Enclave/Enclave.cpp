@@ -61,7 +61,7 @@ int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey 
 	uint8_t outData[BUFFLEN] = {0};
 	sgx_aes_ctr_128bit_key_t key = create_aes_key();
 
-	encrypt_aes(key, inData, sizeof(uint8_t), outData);
+	encrypt_aes(&key, inData, sizeof(uint8_t), outData);
 
 	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
@@ -71,8 +71,8 @@ int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey 
 //	ocall_print(result.c_str()); // punctured key 
 
 //	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
-//	return 0;
-	return retv; // for debug.
+	return 0;
+//	return retv; // for debug.
 
 }
 
