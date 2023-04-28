@@ -96,7 +96,7 @@ uint64_t SSLE_Obfuscation::getCommValue(int n)
 
 uint64_t * SSLE_Obfuscation::commit(uint64_t *data, uint64_t *prfkey)
 {
-    uint64_t *cmtdata = *data ^ *prfkey;
+    uint64_t *cmtdata = (uint64_t)((int)*data ^ (int)*prfkey);
 
     return cmtdata;
 }
