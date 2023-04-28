@@ -16,7 +16,7 @@ sgx_aes_ctr_128bit_key_t * create_aes_key()
 
 void encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
 {
-    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
+//    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
     const uint32_t ctr_inc_bits = 128;
     uint8_t dest[BUFFLEN] = {0};
 //    p_dest = (uint8_t *)malloc(sizeof(dest));
@@ -29,9 +29,9 @@ void encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const in
 void decrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
 {
     const uint32_t ctr_inc_bits = 128;
-    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
+//    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
 
-    sgx_aes_ctr_decrypt(p_key, p_src, src_len, p_ctr, ctr_inc_bits, p_dest);
+    sgx_aes_ctr_decrypt(p_key, p_src + SGX_AES_IV_SIZE, src_len, p_src, ctr_inc_bits, p_dest);
 
 
 }
