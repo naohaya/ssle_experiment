@@ -10,6 +10,7 @@
 #include "ssle/SSLE_Obfuscation.h"
 #include "pke/pke.h"
 #include "pke/crypto.h"
+#include "crypto/crypto.h"
 
 void *pubkey = (void *)malloc(KEY_SIZE); //public key
 void *seckey = (void *)malloc(KEY_SIZE); //secret key
@@ -53,10 +54,16 @@ int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey 
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* encryption test */
-	const unsigned char *inData = (unsigned char *)ret;
-	int retv = encrypt(pubkey, inData, 4, outData, outlen);
+	// const unsigned char *inData = (unsigned char *)ret;
+	// int retv = encrypt(pubkey, inData, 4, outData, outlen);
 
-//	ocall_print((char *)outData);
+	const uint8_t *inData = (uint8_t *)ret;
+	uint8_t outData[BUFFLEN] = {0};
+	sgx_aes_ctr_128bit_key_t key = create_aes_key();
+
+	encrypt_aes(key, inData, sizeof(uint8_t), outData);
+
+	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
 	
 //	ocall_print(ssleobf.getRandKey().c_str()); // random key
