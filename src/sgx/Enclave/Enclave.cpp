@@ -41,8 +41,8 @@ int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey 
 	SSLE_Obfuscation ssleobf;
 
 	/* encryption test */
-	unsigned char *outData;
-	size_t *outlen;
+//	unsigned char *outData;
+//	size_t *outlen;
 
 //	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
 
