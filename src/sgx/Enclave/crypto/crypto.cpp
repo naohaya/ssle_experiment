@@ -30,8 +30,9 @@ void encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const in
 void decrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
 {
     const uint32_t ctr_inc_bits = 128;
+    uint8_t *indata = (uint8_t *) malloc(sizeof(uint8_t));
 //    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
-    uint8_t *indata = p_src;
+    memcpy(indata, p_src, src_len);
 
     sgx_aes_ctr_decrypt(p_key, indata + SGX_AES_IV_SIZE, src_len, indata, ctr_inc_bits, p_dest);
 
