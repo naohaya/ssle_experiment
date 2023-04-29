@@ -3,6 +3,7 @@
 #include "sgx_tcrypto.h"
 #include "stdlib.h"
 #include <stdlib.h>
+#include <cstring>
 
 #define BUFFLEN 256
 #define SGX_AES_IV_SIZE 12  
