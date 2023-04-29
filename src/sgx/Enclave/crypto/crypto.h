@@ -1,6 +1,8 @@
 #include "Enclave_t.h"
 #include "sgx_trts.h"
 #include "sgx_tcrypto.h"
+#include "stdlib.h"
+#include <stdlib.h>
 
 #define BUFFLEN 256
 #define SGX_AES_IV_SIZE 12  
