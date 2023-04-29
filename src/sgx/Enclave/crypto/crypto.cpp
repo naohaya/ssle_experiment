@@ -4,13 +4,14 @@ sgx_aes_ctr_128bit_key_t key;
 
 sgx_aes_ctr_128bit_key_t * create_aes_key()
 {
+    sgx_aes_ctr_128bit_key_t *newkey = (sgx_aes_ctr_128bit_key_t *)malloc(sizeof(sgx_aes_ctr_128bit_key_t));
     for(int i=0; i<16; i++)
     {
         key[i] = random_item(256);
     }
-//    memcpy(newkey, key, sizeof(sgx_aes_ctr_128bit_key_t));
+    memcpy(newkey, key, sizeof(sgx_aes_ctr_128bit_key_t));
 
-    return key;
+    return newkey;
     
 }
 
@@ -30,8 +31,9 @@ void decrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const in
 {
     const uint32_t ctr_inc_bits = 128;
 //    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
+    uint8_t *indata = p_src;
 
-    sgx_aes_ctr_decrypt(p_key, p_src + SGX_AES_IV_SIZE, src_len, p_src, ctr_inc_bits, p_dest);
+    sgx_aes_ctr_decrypt(p_key, indata + SGX_AES_IV_SIZE, src_len, indata, ctr_inc_bits, p_dest);
 
 
 }
