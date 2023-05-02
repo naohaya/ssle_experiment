@@ -12,7 +12,7 @@
 #define ADD_ENC_DATA_SIZE (SGX_AES_MAC_SIZE + SGX_AES_IV_SIZE)
 
 sgx_aes_ctr_128bit_key_t * create_aes_key();
-void encrypt_aes(sgx_aes_ctr_128bit_key_t *, const uint8_t *, const int, uint8_t *);
-void decrypt_aes(sgx_aes_ctr_128bit_key_t *, const uint8_t *, const int, uint8_t *);
+int encrypt_aes(sgx_aes_ctr_128bit_key_t *, const uint8_t *, const int, uint8_t *);
+int decrypt_aes(sgx_aes_ctr_128bit_key_t *, const uint8_t *, const int, uint8_t *);
 int random_item(int);
 

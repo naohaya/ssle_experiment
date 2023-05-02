@@ -15,7 +15,7 @@ sgx_aes_ctr_128bit_key_t * create_aes_key()
     
 }
 
-void encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
+int encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
 {
 //    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
     const uint32_t ctr_inc_bits = 128;
@@ -24,14 +24,14 @@ void encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const in
 
     sgx_status_t ret = sgx_aes_ctr_encrypt(p_key, p_src, src_len, dest, ctr_inc_bits, dest + SGX_AES_IV_SIZE);
     if (ret != SGX_SUCCESS) {
-        ocall_print("Error was returned while encrypting.");
+        return -1;
     }
     memcpy(p_dest, dest, src_len + ADD_ENC_DATA_SIZE);
 
-
+    return 0;
 }
 
-void decrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
+int decrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
 {
     const uint32_t ctr_inc_bits = 128;
     uint8_t *indata = (uint8_t *) malloc(sizeof(uint8_t));
@@ -40,7 +40,7 @@ void decrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const in
 
     sgx_aes_ctr_decrypt(p_key, indata + SGX_AES_IV_SIZE, src_len, indata, ctr_inc_bits, p_dest);
 
-
+    return 0;
 }
 
 int random_item(int size)
