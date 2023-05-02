@@ -64,7 +64,7 @@ int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey 
 
 	encrypt_aes(key, inData, sizeof(uint8_t), outData);
 
-	ocall_print((char *)inData);
+	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
 	
 //	ocall_print(ssleobf.getRandKey().c_str()); // random key
