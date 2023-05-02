@@ -64,7 +64,7 @@ int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey 
 
 	int encret = encrypt_aes(key, inData, sizeof(uint8_t), outData);
 
-	ocall_print((char *)&encret);
+	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
 	
 //	ocall_print(ssleobf.getRandKey().c_str()); // random key
@@ -72,8 +72,8 @@ int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey 
 //	ocall_print(result.c_str()); // punctured key 
 
 //	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
-	return 0;
-//	return retv; // for debug.
+//	return 0;
+	return encret; // for debug.
 
 }
 
