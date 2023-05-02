@@ -22,7 +22,10 @@ void encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const in
     uint8_t dest[BUFFLEN] = {0};
 //    p_dest = (uint8_t *)malloc(sizeof(dest));
 
-    sgx_aes_ctr_encrypt(p_key, p_src, src_len, dest, ctr_inc_bits, dest + SGX_AES_IV_SIZE);
+    sgx_status_t ret = sgx_aes_ctr_encrypt(p_key, p_src, src_len, dest, ctr_inc_bits, dest + SGX_AES_IV_SIZE);
+    if (ret != SGX_SUCCESS) {
+        ocall_print("Error was returned while encrypting.");
+    }
     memcpy(p_dest, dest, src_len + ADD_ENC_DATA_SIZE);
 
 
