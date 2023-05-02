@@ -6,7 +6,10 @@
 #include <cstring>
 
 #define BUFFLEN 256
-#define SGX_AES_IV_SIZE 12  
+#define SGX_AES_IV_SIZE 12
+#define SGX_AES_MAC_SIZE 16   //128 bit mac
+#define CIPHERTEXT_SIZE 36
+#define ADD_ENC_DATA_SIZE (SGX_AES_MAC_SIZE + SGX_AES_IV_SIZE)
 
 sgx_aes_ctr_128bit_key_t * create_aes_key();
 void encrypt_aes(sgx_aes_ctr_128bit_key_t *, const uint8_t *, const int, uint8_t *);
