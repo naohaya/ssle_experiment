@@ -100,7 +100,7 @@ uint64_t * SSLE_Obfuscation::commit(uint64_t *data, uint64_t *prfkey)
 {
     unsigned char *cdata = (unsigned char *)data;
     unsigned char *cprfkye = (unsigned char *)prfkey;
-    unsinged char *result = (unsigned char *)malloc(sizeof(cdata) * sizeof(unsigned char));
+    unsigned char *result = (unsigned char *)malloc(sizeof(cdata) * sizeof(unsigned char));
     size_t len = sizeof(cdata) / sizeof(unsigned char);
 
     for (size_t i = 0; i < len; i ++){
