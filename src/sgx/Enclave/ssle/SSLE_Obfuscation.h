@@ -1,6 +1,7 @@
 #include <iostream>  
 #include <unistd.h> 
-#include <string> 
+#include <string>
+#include <cstdint>
 #include <sstream>
 #include <vector>
 #include "sgx_trts.h"

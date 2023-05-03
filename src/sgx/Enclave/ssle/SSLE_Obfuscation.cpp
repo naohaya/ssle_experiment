@@ -98,9 +98,9 @@ uint64_t SSLE_Obfuscation::getCommValue(int n)
 
 uint64_t * SSLE_Obfuscation::commit(uint64_t *data, uint64_t *prfkey)
 {
-//    uint64_t *cmtdata = *data ^ *prfkey; // error of mismatching operand types.
+    uint64_t *cmtdata = *data ^ *prfkey; // error of mismatching operand types.
 
-    uint64_t *cmtdata = (uint64_t *)malloc(sizeof(uint64_t));
+//    uint64_t *cmtdata = (uint64_t *)malloc(sizeof(uint64_t));
 
     return cmtdata;
 }
