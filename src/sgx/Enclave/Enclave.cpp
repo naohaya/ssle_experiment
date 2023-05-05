@@ -56,7 +56,7 @@ int ecall_election(const uint64_t *prfkey,
 	ssleobf.electLeader();
 
 	commitValue = ssleobf.getCommValue(0);
-	ocall_print(commitValue);
+	ocall_print((char *)&commitValue);
 	memcpy(output, &commitValue, sizeof(uint64_t));
 
 	result = ssleobf.getPunctKey();
