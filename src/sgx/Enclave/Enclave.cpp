@@ -22,6 +22,7 @@ int ecall_test(const char *message, size_t message_len)
 	return 31337;
 }
 
+// get PPRF key
 int ecall_get_key(uint64_t *keyout)
 {
 	SSLE_Obfuscation ssleobf;
@@ -34,7 +35,7 @@ int ecall_get_key(uint64_t *keyout)
 	return 0;
 }
 
-int ecall_election(const uint64_t *prfkey, const int *num_nodes) //TODO: seckey should not be received here
+int ecall_election(const uint64_t *prfkey, const int *num_nodes, uint32_t *output, uint32_t *encryptedData) //TODO: seckey should not be received here
 {	
 	std::string result;
 	char * ret = "hoge";

@@ -188,6 +188,8 @@ int main(int argc, char *argv[])
         const int num = 3;
         uint64_t *prfkey = (uint64_t *)malloc(sizeof(uint64_t)); // pprf key
         int retval2 = -9999;
+        uint32_t *output = (uint32_t *)malloc(sizeof(uint32_t));
+        uint32_t *encryptedData = (uint32_t *)malloc(sizeof(uint32_t));
 
         std::cout << "Execute ECALL.\n"
                   << std::endl;
@@ -218,7 +220,7 @@ int main(int argc, char *argv[])
         }
 
 
-        sgx_status_t status2 = ecall_election(global_eid, &retval2, prfkey, &num); // for test
+        sgx_status_t status2 = ecall_election(global_eid, &retval2, prfkey, &num, output, encryptedData); // for test
 
         if (status2 != SGX_SUCCESS)
         {
