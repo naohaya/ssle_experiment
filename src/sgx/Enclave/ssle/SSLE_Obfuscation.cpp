@@ -56,9 +56,9 @@ void SSLE_Obfuscation::electLeader()
 //    leader_id = rand_value % num;
     leader_id = (int)prfValue % num;
     
-    /*
+
     uint64_t *cmt;
-    for (int i = 0; i < comm_values.size()-1; i++){
+    for (int i = 0; i < comm_values.size(); i++){
         if (i == (int)leader_id) {
             cmt = commit(&win, &prfValue);
         } else {
@@ -67,7 +67,7 @@ void SSLE_Obfuscation::electLeader()
 
         comm_values[i] = *cmt;
     }
-    */
+
 
 }
 
