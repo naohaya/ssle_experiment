@@ -188,8 +188,8 @@ int main(int argc, char *argv[])
         const int num = 3;
         uint64_t *prfkey = (uint64_t *)malloc(sizeof(uint64_t)); // pprf key
         int retval2 = -9999;
-        uint32_t *output = (uint32_t *)malloc(sizeof(uint32_t));
-        uint32_t *encryptedData = (uint32_t *)malloc(sizeof(uint32_t));
+        uint64_t *output = (uint64_t *)malloc(sizeof(uint64_t));
+        uint64_t *encryptedData = (uint64_t *)malloc(sizeof(uint64_t));
 
         std::cout << "Execute ECALL.\n"
                   << std::endl;

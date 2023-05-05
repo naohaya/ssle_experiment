@@ -37,12 +37,13 @@ int ecall_get_key(uint64_t *keyout)
 
 int ecall_election(const uint64_t *prfkey, 
 	const int *num_nodes, 
-	uint32_t *output, 
-	uint32_t *encryptedData) //TODO: seckey should not be received here
+	uint64_t *output,  // committed value
+	uint64_t *encryptedData) //TODO: seckey should not be received here
 {	
 	std::string result;
 	char * ret = "hoge";
 	SSLE_Obfuscation ssleobf;
+	uint64_t commitValue;
 
 	/* encryption test */
 //	unsigned char *outData;
@@ -53,6 +54,9 @@ int ecall_election(const uint64_t *prfkey,
 	ssleobf.initialize(prfkey, num_nodes);
 
 	ssleobf.electLeader();
+
+	commitValue = ssleobf.getCommValue(0);
+	memcpy(output, &commitValue, sizeof(uint64_t));
 
 	result = ssleobf.getPunctKey();
 //	memcpy(ret, result.c_str(), result.length());
