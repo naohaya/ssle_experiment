@@ -96,7 +96,7 @@ string SSLE_Obfuscation::depunct(string punct)
 /* get a commit value correspoding to the given node ID (n) */
 uint64_t SSLE_Obfuscation::getCommValue(int n)
 {
-    if (n < comm_values.size()) {
+    if (n < comm_values.size() && n >= 0) {
         return comm_values[n];
     } else {
         return -1;
