@@ -60,10 +60,11 @@ void SSLE_Obfuscation::electLeader()
     for (int i = 0; i < comm_values.size(); i++){
         if (i == (int)leader_id) {
             cmt = commit(&win, &prfValue);
-            comm_values[i] = *cmt;
         } else {
             cmt = commit(&lose, &prfValue);
         }
+
+        comm_values[i] = *cmt;
     }
 
     /* bit commitment NOTE: it should use oblivious transfer */
