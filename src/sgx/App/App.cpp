@@ -235,6 +235,7 @@ int main(int argc, char *argv[])
             sgx_error_print(status2);
         }
 
+        std::cout << "Committed Value: " << *output << std::endl;
 
 
         /* print ECALL result */
