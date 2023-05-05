@@ -18,10 +18,13 @@ class SSLE_Obfuscation //: public SSLE
     uint64_t secret = 0x93064E905C127FE5; // key
     uint64_t hash = 0xA4BDE5C4A05E6256; // hash (constant)
     uint64_t lcg = 0; // needed for pprf.
+    uint64_t prfValue;
     std::string randKey;
     std::string punctKey;
     int num;
     uint32_t leader_id;
+    uint64_t win = 0xFF;
+    uint64_t lose = 0x11;
 
 
     public:

@@ -47,12 +47,24 @@ void SSLE_Obfuscation::electLeader()
     PPRF pprf = PPRF();
 
     /* electing a leader */
-    randKey = pprf.prf_string(&secret, &lcg, &hash); // obtain a random key.
-    punctKey = pprf.puncturing(randKey); // obtain a punctured key.
+    prfValue = pprf.prf(&secret, &lcg, &hash);
+//    randKey = pprf.prf_string(&secret, &lcg, &hash); // obtain a random key.
+//    punctKey = pprf.puncturing(randKey); // obtain a punctured key.
 
     /* leader election in randomized way */
-    sgx_read_rand((unsigned char *)&rand_value, 4);
-    leader_id = rand_value % num;
+//    sgx_read_rand((unsigned char *)&rand_value, 4);
+//    leader_id = rand_value % num;
+    leader_id = (int)prfValue % num;
+    
+    uint64_t *cmt;
+    for (int i = 0; i < comm_values.size(); i++){
+        if (i == (int)leader_id) {
+            cmt = commit(&win, &prfValue);
+            comm_values[i] = *cmt;
+        } else {
+            cmt = commit(&lose, &prfValue);
+        }
+    }
 
     /* bit commitment NOTE: it should use oblivious transfer */
     for (int i = 0; i < num; i++)
