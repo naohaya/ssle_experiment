@@ -18,7 +18,7 @@ class SSLE_Obfuscation //: public SSLE
     uint64_t secret = 0x93064E905C127FE5; // key
     uint64_t hash = 0xA4BDE5C4A05E6256; // hash (constant)
     uint64_t lcg = 0; // needed for pprf.
-    uint64_t prfValue;
+    uint64_t prfValue; // it is used for committing.
     std::string randKey;
     std::string punctKey;
     int num;

@@ -14,8 +14,12 @@ using std::string;
 class Node {
     public:
     //variables
-    string ipaddr;
-    int portno;
+    string ipaddr; // IP address
+    int portno; // Port num.
+    void *pubkey; // public key
+    double weight = 0.0; // weight
+    double positiveFactor = 0.0; // positive factor to calculate the weight.
+    double negativeFactor = 0.0; // negative factor to calculate the weight.
 
     // methods
     void initialization(void);
@@ -24,6 +28,9 @@ class Node {
     int connect_from_client(void);
     int close_connection(void);
     int close_connection(int);
+    int setPubkey(const void *);
+    void updatePosFactor(double);
+    void updateNegFactor(double);
     ssize_t receive_message(void);
     ssize_t receive_message(int);
     ssize_t receive_message(char *, size_t, int);
@@ -87,6 +94,23 @@ int Node::listen_as_server() {
 	}
 
     return 0;
+}
+
+// set a public key
+int Node::setPubkey(const void *givenkey){
+    pubkey = (void *)malloc(sizeof(givenkey));
+    memcpy(pubkey, givenkey, sizeof(givenkey));
+
+    return 0;
+
+}
+
+void Node::updatePosFactor(double pf){
+    positiveFactor = pf;
+}
+
+void Node::updateNegFactor(double nf){
+    negativeFactor = nf;
 }
 
 // accepting the connection request (for servers)
