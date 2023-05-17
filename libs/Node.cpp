@@ -20,6 +20,8 @@ class Node {
     double weight = 0.0; // weight
     double positiveFactor = 0.0; // positive factor to calculate the weight.
     double negativeFactor = 0.0; // negative factor to calculate the weight.
+    uint64_t commit_value; // to store commit value in an enclave.
+    void *encryptedOutput; // to sotre encrypted value in an enclave.
 
     // methods
     void initialization(void);
@@ -29,6 +31,8 @@ class Node {
     int close_connection(void);
     int close_connection(int);
     int setPubkey(const void *);
+    int setCommitValue(const uint64_t);
+    int setEncryptedOutput(const void *);
     void updatePosFactor(double);
     void updateNegFactor(double);
     ssize_t receive_message(void);
@@ -103,6 +107,21 @@ int Node::setPubkey(const void *givenkey){
 
     return 0;
 
+}
+
+// set committed value.
+int Node::setCommitValue(const uint64_t com){
+    commit_value = com;
+
+    return 0;
+}
+
+// set encrypted output.
+int Node::setEncryptedOutput(const void *enc){
+    encryptedOutput = (void *)malloc(sizeof(enc));
+    memcpy(encryptedOutput, enc, sizeof(enc));
+
+    return 0;
 }
 
 void Node::updatePosFactor(double pf){
