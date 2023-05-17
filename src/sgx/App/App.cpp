@@ -146,19 +146,19 @@ int main(int argc, char *argv[])
     /*** cmdline analysis ***/
     if (argc == 4)
     {
-        localport = std::atoi(argv[1]);
-        remoteport = std::atoi(argv[2]);
+        localport = std::atoi(argv[2]);
+        remoteport = std::atoi(argv[3]);
         thisNode = Node("127.0.0.1", localport);
         remoteNode = Node("127.0.0.1", remoteport);
 
-        if (std::atoi(argv[3]))
+        if (std::atoi(argv[1]))
         {
             leader = true;
         }
     }
     else
     {
-        std::cout << "./app <local port>, <remote port>, <flag>" << std::endl;
+        std::cout << "./app <flag> <local port>, <remote port>" << std::endl;
     }
 
     if (leader)
