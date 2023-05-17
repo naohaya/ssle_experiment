@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
     std::vector<Node> nodes;
     Node thisNode;
     Node remoteNode;
-    bool leader = false;
+    leader = false;
     int inconnect;
     int localport;
     int remoteport;
@@ -385,6 +385,7 @@ void batchRegistration(const std::string& str) {
 
 // read config file
 void readCmdline(int argc, char *argv[]){
+    int localport;
     string remotehost;
     if (argc == 4)
     {
@@ -403,7 +404,7 @@ void readCmdline(int argc, char *argv[]){
         exit(1);
     }
 
-    batchRegistration(remotehost);
+    batchRegistration(&remotehost);
 
 }
 
