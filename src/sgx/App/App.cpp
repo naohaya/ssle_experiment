@@ -386,7 +386,7 @@ void batchRegistration(const std::string& str) {
 // read config file
 void readCmdline(int argc, char *argv[]){
     int localport;
-    string remotehost;
+    const string remotehost;
     if (argc == 4)
     {
         localport = std::atoi(argv[2]);
