@@ -29,8 +29,10 @@ Node registration(std::string);
 void ocall_print(const char *);
 void ocall_return_pubkey(uint8_t *, long *);
 
+std::vector<Node> nodes; // participants
 void *public_key = (void *)malloc(KEY_SIZE);
 sgx_enclave_id_t global_eid = 0; // enclave initialization
+bool leader = false;
 
 /* Enclave initialization */
 int initialize_enclave()
@@ -134,10 +136,9 @@ int initialize_enclave()
 int main(int argc, char *argv[])
 {
 
-    std::vector<Node> nodes;
+    
     Node thisNode;
     Node remoteNode;
-    leader = false;
     int inconnect;
     int localport;
     int remoteport;
