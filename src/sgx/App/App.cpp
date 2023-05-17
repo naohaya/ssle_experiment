@@ -19,7 +19,6 @@
 #include <sgx_urts.h>
 #include "error_print.h"
 #include "utils/utils.h"
-#include "cmdline.h" // for analyzing command line arguments.
 
 #define RSA_PUBLIC_KEY_SIZE 1040 // the size of public key. this is from https://chromium.googlesource.com/chromiumos/platform/ec/+/master/include/rsa.h
 #define KEY_SIZE 8
@@ -386,20 +385,25 @@ void batchRegistration(const std::string& str) {
 
 // read config file
 void readCmdline(int argc, char *argv[]){
-    cmdline::parser cla;
+    string remotehost;
+    if (argc == 4)
+    {
+        localport = std::atoi(argv[2]);
+        remotehost = argv[3];
+        thisNode = Node("127.0.0.1", localport);
 
-    cla.add<int>("leader", 'l', "initial leader", false, 0, cmdline::range(0,1));
-    cla.add<string>("host", 'h', "host name/ip address : port no.", true, "");
-
-//    cla.parse_check(argc, argv);
-    cla.parse(argc, argv);
-    
-    if(cla.get<int>("leader")) {
-        leader = true;
+        if (std::atoi(argv[1]))
+        {
+            leader = true;
+        }
+    }
+    else
+    {
+        std::cout << "./app <flag> <local port>, <remotehost:port,...>" << std::endl;
+        exit(1);
     }
 
-    batchRegistration(cla.get<string>("host"));
-
+    batchRegistration(remotehost);
 
 }
 
