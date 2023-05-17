@@ -368,7 +368,7 @@ Node registration(std::string str)
 }
 
 // batch registration with a given string
-void batchRegistration(std::string& str) {
+void batchRegistration(const std::string& str) {
     std::string token;
     for (char c : str) {
         if (c == ',') {
@@ -404,7 +404,7 @@ void readCmdline(int argc, char *argv[]){
         exit(1);
     }
 
-    batchRegistration(&remotehost);
+    batchRegistration(remotehost);
 
 }
 
