@@ -368,7 +368,7 @@ Node registration(std::string str)
 }
 
 // batch registration with a given string
-void batchRegistration(const std::string& str) {
+void batchRegistration(std::string& str) {
     std::string token;
     for (char c : str) {
         if (c == ',') {
@@ -386,7 +386,7 @@ void batchRegistration(const std::string& str) {
 // read config file
 void readCmdline(int argc, char *argv[]){
     int localport;
-    const string remotehost;
+    string remotehost;
     if (argc == 4)
     {
         localport = std::atoi(argv[2]);
