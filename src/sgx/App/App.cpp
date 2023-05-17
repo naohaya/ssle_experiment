@@ -19,6 +19,7 @@
 #include <sgx_urts.h>
 #include "error_print.h"
 #include "utils/utils.h"
+#include "cmdline.h" // for analyzing command line arguments.
 
 #define RSA_PUBLIC_KEY_SIZE 1040 // the size of public key. this is from https://chromium.googlesource.com/chromiumos/platform/ec/+/master/include/rsa.h
 #define KEY_SIZE 8
@@ -143,6 +144,7 @@ int main(int argc, char *argv[])
     int remoteport;
     std::ostringstream oss;
 
+    /*** cmdline analysis ***/
     if (argc == 4)
     {
         localport = std::atoi(argv[1]);
@@ -207,6 +209,7 @@ int main(int argc, char *argv[])
         }
         */
 
+       /* 2) Creating a RSA keypair and obtaining the public key */
         sgx_status_t status3 = ecall_create_rsa_key_pair(global_eid, &retval, public_key);
         if (status3 != SGX_SUCCESS)
         {
@@ -296,7 +299,7 @@ int main(int argc, char *argv[])
         remoteNode.connect_from_client();
 
         // データ送信
-        std::string msg = thisNode.ipaddr + "," + std::to_string(thisNode.portno);
+        std::string msg = thisNode.ipaddr + ":" + std::to_string(thisNode.portno);
         remoteNode.send_message(msg, msg.length(), 0); // 送信
         std::cout << "Participant sent: " << msg << std::endl;
 
@@ -335,10 +338,12 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+/*** utility functions ***/
+// node registration
 Node registration(std::string str)
 {
     int first = 0;
-    char del = ',';
+    char del = ':';
     int last = str.find_first_of(del);
 
     std::vector<std::string> result;
@@ -362,6 +367,43 @@ Node registration(std::string str)
 
     return ret;
 }
+
+// batch registration with a given string
+void batchRegistration(const std::string& str) {
+    std::string token;
+    for (char c : str) {
+        if (c == ',') {
+            nodes.push_back(registration(token));
+            token.clear();
+        } else {
+            token.push_back(c);
+        }
+    }
+    if (!token.empty()) {
+        nodes.push_back(registration(token));
+    }
+}
+
+// read config file
+void readCmdline(int argc, char *argv[]){
+    cmdline::parser cla;
+
+    cla.add<int>("leader", 'l', "initial leader", false, 0, cmdline::range(0,1));
+    cla.add<string>("host", 'h', "host name/ip address : port no.", true, "");
+
+//    cla.parse_check(argc, argv);
+    cla.parse(argc, argv);
+    
+    if(cla.get<int>("leader")) {
+        leader = true;
+    }
+
+    batchRegistration(cla.get<string>("host"));
+
+
+}
+
+
 
 // Ocall implementation
 /* OCALL implementations */
