@@ -46,7 +46,7 @@ int ecall_election(const uint64_t *prfkey,
 	uint64_t commitValue;
 
 	/* pke encryption test */
-	unsigned char *outData;
+	unsigned char *outData = (unsigned char) malloc (sizeof(unsigned char));
 	size_t *outlen;
 
 	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
