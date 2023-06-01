@@ -41,15 +41,15 @@ int ecall_election(const uint64_t *prfkey,
 	uint64_t *encryptedData) //TODO: seckey should not be received here
 {	
 	std::string result;
-	char * ret = "hoge";
+	char * ntext = "hoge";
 	SSLE_Obfuscation ssleobf;
 	uint64_t commitValue;
 
-	/* encryption test */
-//	unsigned char *outData;
-//	size_t *outlen;
+	/* pke encryption test */
+	unsigned char *outData;
+	size_t *outlen;
 
-//	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
+	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
 
 	ssleobf.initialize(prfkey, num_nodes);
 
@@ -62,16 +62,17 @@ int ecall_election(const uint64_t *prfkey,
 	result = ssleobf.getPunctKey();
 //	memcpy(ret, result.c_str(), result.length());
 
-	/* encryption test */
-	// const unsigned char *inData = (unsigned char *)ret;
-	// int retv = encrypt(pubkey, inData, 4, outData, outlen);
+	/* pke encryption test */
+	const unsigned char *inData = (unsigned char *)ntext;
+	int ret = encrypt(pubkey, inData, 4, outData, outlen);
 
-	const uint8_t *inData = (uint8_t *)ret;
-	uint8_t outData[BUFFLEN] = {0};
-	sgx_aes_ctr_128bit_key_t *key; 
-	key = create_aes_key();
+	/* test for common key based encryption  */
+	// const uint8_t *inData = (uint8_t *)ret;
+	// uint8_t outData[BUFFLEN] = {0};
+	// sgx_aes_ctr_128bit_key_t *key; 
+	// key = create_aes_key();
 
-	int encret = encrypt_aes(key, inData, sizeof(uint8_t), outData);
+	// int encret = encrypt_aes(key, inData, sizeof(uint8_t), outData);
 
 	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
