@@ -68,7 +68,7 @@ int ecall_election(const uint64_t *prfkey,
 
 	/* pke encryption test */
 	const unsigned char *inData = (unsigned char *)ntext;
-	int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
+	int ret = encrypt(pubkey, inData, 15, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
 	// const uint8_t *inData = (uint8_t *)ret;
