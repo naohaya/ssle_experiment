@@ -46,8 +46,8 @@ int ecall_election(const uint64_t *prfkey,
 	uint64_t commitValue;
 
 	/* pke encryption test */
-	unsigned char *outData = (unsigned char *) malloc (sizeof(unsigned char));
-	size_t *outlen;
+	unsigned char *outData = (unsigned char *) malloc (1024);
+	size_t outlen = 1024;
 
 	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
 
@@ -64,7 +64,7 @@ int ecall_election(const uint64_t *prfkey,
 
 	/* pke encryption test */
 	const unsigned char *inData = (unsigned char *)ntext;
-	int ret = encrypt(pubkey, inData, 4, outData, outlen);
+	int ret = encrypt(pubkey, inData, 5, outData, &outlen);
 
 	/* test for common key based encryption  */
 	// const uint8_t *inData = (uint8_t *)ret;
@@ -83,7 +83,7 @@ int ecall_election(const uint64_t *prfkey,
 
 //	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
 //	return 0;
-	return ret; // for debug.
+	return ret; // for debug.f
 
 }
 
