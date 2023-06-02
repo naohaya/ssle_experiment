@@ -41,7 +41,7 @@ int ecall_election(const uint64_t *prfkey,
 	uint64_t *encryptedData) //TODO: seckey should not be received here
 {	
 	std::string result;
-	char * ntext = "hoge";
+	unsigned char * ntext = "hoge";
 	SSLE_Obfuscation ssleobf;
 	uint64_t commitValue;
 
