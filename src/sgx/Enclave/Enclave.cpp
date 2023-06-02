@@ -12,10 +12,12 @@
 #include "pke/crypto.h"
 #include "crypto/crypto.h"
 
-void *pubkey = (void *)malloc(KEY_SIZE); //public key
-void *seckey = (void *)malloc(KEY_SIZE); //secret key
+//void *pubkey = (void *)malloc(KEY_SIZE); //public key
+//void *seckey = (void *)malloc(KEY_SIZE); //secret key
 unsigned char *testkey = (unsigned char *)"01234567890123456789012345678901";
 unsigned char ciphertext[128];
+unsigned char pubkey[32];
+unsigned char seckey[32];
 
 int ecall_test(const char *message, size_t message_len)
 {
