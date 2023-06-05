@@ -68,7 +68,6 @@ int ecall_election(const uint64_t *prfkey,
 
 	/* pke encryption test */
 	int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
-	ret = encrypt(pubkey, inData, 5, NULL, &outlen);
 
 	/* test for common key based encryption  */
 	// const uint8_t *inData = (uint8_t *)ret;
@@ -77,7 +76,7 @@ int ecall_election(const uint64_t *prfkey,
 	// key = create_aes_key();
 
 	// int encret = encrypt_aes(key, inData, sizeof(uint8_t), outData);
-
+	ocall_print("Encrypted data:");
 	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
 	
