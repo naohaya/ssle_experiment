@@ -16,8 +16,8 @@
 //void *seckey = (void *)malloc(KEY_SIZE); //secret key
 unsigned char *testkey = (unsigned char *)"01234567890123456789012345678901";
 unsigned char ciphertext[128];
-unsigned char pubkey[32];
-unsigned char seckey[32];
+unsigned char pubkey[256];
+unsigned char seckey[256];
 
 int ecall_test(const char *message, size_t message_len)
 {
@@ -68,7 +68,7 @@ int ecall_election(const uint64_t *prfkey,
 
 	/* pke encryption test */
 	const unsigned char *inData = (unsigned char *)ntext;
-	int ret = encrypt(pubkey, inData, 15, ciphertext, &outlen);
+	int ret = encrypt(pubkey, inData, 4, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
 	// const uint8_t *inData = (uint8_t *)ret;

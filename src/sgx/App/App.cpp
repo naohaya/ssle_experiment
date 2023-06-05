@@ -21,7 +21,7 @@
 #include "utils/utils.h"
 
 #define RSA_PUBLIC_KEY_SIZE 1040 // the size of public key. this is from https://chromium.googlesource.com/chromiumos/platform/ec/+/master/include/rsa.h
-#define KEY_SIZE 8
+#define KEY_SIZE 256
 
 using namespace std;
 
