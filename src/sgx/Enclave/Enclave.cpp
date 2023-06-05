@@ -78,8 +78,8 @@ int ecall_election(const uint64_t *prfkey,
 
 	// int encret = encrypt_aes(key, inData, sizeof(uint8_t), outData);
 
-	ocall_print((char *)outData);
-//	ocall_print((char *)outlen);
+//	ocall_print((char *)outData);
+	ocall_print((char *)outlen);
 	
 //	ocall_print(ssleobf.getRandKey().c_str()); // random key
 
