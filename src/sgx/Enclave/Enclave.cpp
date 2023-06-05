@@ -67,7 +67,7 @@ int ecall_election(const uint64_t *prfkey,
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* pke encryption test */
-	const unsigned char *inData = (unsigned char *)ntext;
+	const unsigned char *inData = (unsigned char *)"hoge";
 	int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
