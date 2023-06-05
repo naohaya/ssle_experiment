@@ -45,7 +45,7 @@ int ecall_election(const uint64_t *prfkey,
 	uint64_t *encryptedData) //TODO: seckey should not be received here
 {	
 	std::string result;
-	unsigned char * ntext = (unsigned char *)"hoge";
+	const unsigned char *inData = (unsigned char *)"hoge";
 	SSLE_Obfuscation ssleobf;
 	uint64_t commitValue;
 
@@ -67,7 +67,6 @@ int ecall_election(const uint64_t *prfkey,
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* pke encryption test */
-	const unsigned char *inData = (unsigned char *)"hoge";
 	int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
