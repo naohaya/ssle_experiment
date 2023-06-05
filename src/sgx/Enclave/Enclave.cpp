@@ -15,7 +15,7 @@
 //void *pubkey = (void *)malloc(KEY_SIZE); //public key
 //void *seckey = (void *)malloc(KEY_SIZE); //secret key
 unsigned char *testkey = (unsigned char *)"01234567890123456789012345678901";
-unsigned char ciphertext[128];
+unsigned char ciphertext[1048];
 unsigned char pubkey[256];
 unsigned char seckey[256];
 
