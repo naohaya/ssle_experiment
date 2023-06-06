@@ -10,6 +10,7 @@
 #include "ssle/SSLE_Obfuscation.h"
 #include "pke/pke.h"
 #include "pke/crypto.h"
+#include "pke/test_crypto.h"
 #include "crypto/crypto.h"
 
 //void *pubkey = (void *)malloc(KEY_SIZE); //public key
@@ -67,7 +68,8 @@ int ecall_election(const uint64_t *prfkey,
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* pke encryption test */
-	int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
+	test_crypto();
+	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
 	// const uint8_t *inData = (uint8_t *)ret;
