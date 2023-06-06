@@ -35,7 +35,7 @@ int test_key_create(void *pkey, void *skey)
 
     void *private_key = NULL;
 
-    sgx_status_t ret_create_private_key = sgx_create_rsa_priv2_key(n_byte_size, sizeof(e), (unsigned char *)&e, p_p, p_q, p_dmp1, p_dmq1, p_iqmp, &private_key);
+    sgx_status_t ret_create_private_key = sgx_create_rsa_priv2_key(n_byte_size, sizeof(e), (unsigned char *)&e, p_p, p_q, p_dmp1, p_dmq1, p_iqmp, &skey);
 
     if (ret_create_private_key != SGX_SUCCESS)
     {
@@ -46,7 +46,7 @@ int test_key_create(void *pkey, void *skey)
 
     void *public_key = NULL;
 
-    sgx_status_t ret_create_public_key = sgx_create_rsa_pub1_key(n_byte_size, sizeof(e), p_n, (unsigned char *)&e, &public_key);
+    sgx_status_t ret_create_public_key = sgx_create_rsa_pub1_key(n_byte_size, sizeof(e), p_n, (unsigned char *)&e, &pkey);
 
     if (ret_create_public_key != SGX_SUCCESS)
     {
@@ -56,12 +56,12 @@ int test_key_create(void *pkey, void *skey)
     }
 
     ocall_print("Public key size: ");
-    ocall_print(std::to_string(sizeof(public_key)).c_str());
+    ocall_print(std::to_string(sizeof(pkey)).c_str());
     ocall_print("Private key size: ");
-    ocall_print(std::to_string(sizeof(private_key)).c_str());
+    ocall_print(std::to_string(sizeof(skey)).c_str());
 
-    memcpy(pkey, public_key, sizeof(public_key));
-    memcpy(skey, private_key, sizeof(private_key));
+//    memcpy(pkey, public_key, sizeof(public_key));
+//    memcpy(skey, private_key, sizeof(private_key));
 
     return ret;
 
