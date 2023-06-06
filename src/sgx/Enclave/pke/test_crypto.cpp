@@ -75,6 +75,8 @@ int test_encrypt(void *pkey, unsigned char *outData)
     char *pin_data = "Hello World!";
     size_t out_len = 0;
 
+    ocall_print(strlen(pin_data));
+
     sgx_status_t ret_get_output_len = sgx_rsa_pub_encrypt_sha256(pkey, NULL, &out_len, (unsigned char *)pin_data, strlen(pin_data));
 
 
@@ -83,6 +85,8 @@ int test_encrypt(void *pkey, unsigned char *outData)
     {
         ocall_print("Determination of output length failed");
         ocall_print(std::to_string(ret_get_output_len).c_str());
+
+        // Error analysis
         if (ret_get_output_len == SGX_ERROR_INVALID_PARAMETER) {
             ocall_print("encrypt: Invalid Parameter");
         } else if (ret_get_output_len == SGX_ERROR_OUT_OF_MEMORY) {
@@ -100,6 +104,8 @@ int test_encrypt(void *pkey, unsigned char *outData)
     {
         ocall_print("Encryption failed");
         ocall_print(std::to_string(ret_encrypt).c_str());
+
+        // Error analysis
         if (ret_encrypt == SGX_ERROR_INVALID_PARAMETER) {
             ocall_print("encrypt: Invalid Parameter");
         } else if (ret_encrypt == SGX_ERROR_OUT_OF_MEMORY) {
