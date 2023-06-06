@@ -1,5 +1,7 @@
 #include "sgx_tcrypto.h"
 #include "Enclave_t.h"
+#include <cstring>
+#include <cstdio>
 
 void test_crypto()
 {
