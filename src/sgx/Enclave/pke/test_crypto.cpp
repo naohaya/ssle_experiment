@@ -53,7 +53,7 @@ void test_crypto()
     char *pin_data = "Hello World!";
     size_t out_len = 0;
 
-    sgx_status_t ret_get_output_len = sgx_rsa_pub_encrypt_sha256(public_key, NULL, &out_len, (unsigned char *)pin_data, sizeof(pin_data));
+    sgx_status_t ret_get_output_len = sgx_rsa_pub_encrypt_sha256(public_key, NULL, &out_len, (unsigned char *)pin_data, strlen(pin_data));
 
     if (ret_get_output_len != SGX_SUCCESS)
     {
@@ -63,7 +63,7 @@ void test_crypto()
 
     unsigned char pout_data[out_len];
 
-    sgx_status_t ret_encrypt = sgx_rsa_pub_encrypt_sha256(public_key, pout_data, &out_len, (unsigned char *)pin_data, sizeof(pin_data));
+    sgx_status_t ret_encrypt = sgx_rsa_pub_encrypt_sha256(public_key, pout_data, &out_len, (unsigned char *)pin_data, strlen(pin_data));
 
     if (ret_encrypt != SGX_SUCCESS)
     {
