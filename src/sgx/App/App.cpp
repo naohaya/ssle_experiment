@@ -226,6 +226,7 @@ int main(int argc, char *argv[])
 
         if (status2 != SGX_SUCCESS)
         {
+            std::cout << "Error in ecal_election()" << std::endl;
             sgx_error_print(status2);
 
             return -1;
