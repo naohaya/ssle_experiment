@@ -55,6 +55,11 @@ int test_key_create(void *pkey, void *skey)
         ret = -1;
     }
 
+    ocall_print("Public key size: ");
+    ocall_print(std::to_string(sizeof(public_key)).c_str());
+    ocall_print("Private key size: ");
+    ocall_print(std::to_string(sizeof(private_key)).c_str());
+
     memcpy(pkey, public_key, sizeof(public_key));
     memcpy(skey, private_key, sizeof(private_key));
 
@@ -69,8 +74,7 @@ int test_encrypt(void *pkey, unsigned char *outData)
 
     sgx_status_t ret_get_output_len = sgx_rsa_pub_encrypt_sha256(pkey, NULL, &out_len, (unsigned char *)pin_data, strlen(pin_data));
 
-    ocall_print("Public key size: ");
-    ocall_print(std::to_string(sizeof(pkey)).c_str());
+
 
     if (ret_get_output_len != SGX_SUCCESS)
     {
