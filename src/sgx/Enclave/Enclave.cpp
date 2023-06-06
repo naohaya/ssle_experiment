@@ -87,8 +87,8 @@ int ecall_election(const uint64_t *prfkey,
 //	ocall_print(result.c_str()); // punctured key 
 
 //	ocall_print(ssleobf.depunct(result).c_str()); // viterbi decoded
-//	return 0;
-	return ret; // for debug.f
+	return 0;
+//	return ret; // for debug.f
 
 }
 
