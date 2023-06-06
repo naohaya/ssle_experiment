@@ -69,7 +69,7 @@ int ecall_election(const uint64_t *prfkey,
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* pke encryption test */
-	retv = test_key_create(pubkey, seckey);
+	test_key_create(pubkey, seckey);
 	test_encrypt(pubkey, outData);
 	test_decrypt(seckey, outData);
 	// test_crypto();
