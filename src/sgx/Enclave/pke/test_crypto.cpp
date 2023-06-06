@@ -55,6 +55,9 @@ void test_crypto()
 
     sgx_status_t ret_get_output_len = sgx_rsa_pub_encrypt_sha256(public_key, NULL, &out_len, (unsigned char *)pin_data, strlen(pin_data));
 
+    ocall_print("Public key size: ");
+    ocall_print(std::to_string(sizeof(public_key)));
+
     if (ret_get_output_len != SGX_SUCCESS)
     {
         ocall_print("Determination of output length failed");
