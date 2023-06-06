@@ -2,6 +2,7 @@
 #include "Enclave_t.h"
 #include <cstring>
 #include <cstdio>
+#include <string>
 
 void test_crypto()
 {
