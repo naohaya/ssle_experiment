@@ -93,6 +93,13 @@ int test_encrypt(void *pkey, unsigned char *outData)
     {
         ocall_print("Encryption failed");
         ocall_print(std::to_string(ret_encrypt).c_str());
+        if (ret_encrypt == SGX_INVALID_PARAMETER) {
+            ocall_print("encrypt: Invalid Parameter");
+        } else if (ret_encrypt == SGX_ERROR_OUT_OF_MEMORY) {
+            ocall_print("encrypt: Out of Memory");
+        } else if (ret_encrypt == SGX_ERROR_UNEXPECTED) {
+            ocall_print("encrypt: Unexpected Error");
+        }
     }
     else
     {
