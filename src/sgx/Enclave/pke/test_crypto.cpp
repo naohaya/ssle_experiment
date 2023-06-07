@@ -65,7 +65,8 @@ int test_key_create(void *pkey, void *skey)
         ocall_print((char *)skey);
     }
 
-
+    pkey = (void *) malloc (256);
+    skey = (void *) malloc (256);
 
     memcpy(pkey, public_key, 256);
     memcpy(skey, private_key, 256);
