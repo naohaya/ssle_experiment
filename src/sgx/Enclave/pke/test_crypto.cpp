@@ -75,6 +75,10 @@ int test_encrypt(void *pkey, unsigned char *outData)
     char *pin_data = "Hello World!";
     size_t out_len = 0;
 
+    if (pkey == NULL) {
+        ocall_print("public key is NULL");
+    }
+
     sgx_status_t ret_get_output_len = sgx_rsa_pub_encrypt_sha256(pkey, NULL, &out_len, (unsigned char *)pin_data, strlen(pin_data));
 
 
