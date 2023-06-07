@@ -69,8 +69,8 @@ int ecall_election(const uint64_t *prfkey,
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* pke encryption test */
-	void *pkey = NULL;
-	void *skey = NULL;
+	unsigned char pkey[256];
+	unsigned char skey[256];
 	test_key_create(pkey, skey);
 	test_encrypt(pkey, outData);
 	test_decrypt(skey, outData);
