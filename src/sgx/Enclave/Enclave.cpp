@@ -74,6 +74,8 @@ int ecall_election(const uint64_t *prfkey,
 	//unsigned char skey[256];
 	void *skey = NULL;
 	test_key_create(pkey, skey);
+	ocall_print("public key");
+	ocall_print((char *)pkey);
 	test_encrypt(pkey, outData);
 	test_decrypt(skey, outData);
 	//test_crypto();

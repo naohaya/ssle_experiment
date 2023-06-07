@@ -57,25 +57,29 @@ int test_key_create(void *pkey, void *skey)
         ret = -1;
     }
     else {
-
+        /*
         ocall_print("Public key size: ");
         ocall_print(std::to_string(sizeof(public_key)).c_str());
         ocall_print((char *)public_key);
         ocall_print("Private key size: ");
         ocall_print(std::to_string(sizeof(private_key)).c_str());
         ocall_print((char *)private_key);
+        */
     }
 
+    // copy the generated keys to given augments.
     pkey = (void *) malloc (256);
     skey = (void *) malloc (256);
-
     memcpy(pkey, public_key, 256);
     memcpy(skey, private_key, 256);
 
+    // check copied key is empty or not
+    /*
     if (pkey == NULL)
     {
         ocall_print("pkey is NULL");
     }
+    */
 
     return ret;
 
