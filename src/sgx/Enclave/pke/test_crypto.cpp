@@ -57,9 +57,10 @@ int test_key_create(void *pkey, void *skey)
     else {
         ocall_print("Public key size: ");
         ocall_print(std::to_string(sizeof(pkey)).c_str());
-        ocall_print((char **)pkey);
+        ocall_print((char *)pkey);
         ocall_print("Private key size: ");
         ocall_print(std::to_string(sizeof(skey)).c_str());
+        ocall_print((char *)skey);
     }
 
 
