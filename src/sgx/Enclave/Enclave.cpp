@@ -72,8 +72,8 @@ int ecall_election(const uint64_t *prfkey,
 	void *pkey = NULL;
 	void *skey = NULL;
 	test_key_create(pkey, skey);
-	test_encrypt(pubkey, outData);
-	test_decrypt(seckey, outData);
+	test_encrypt(pkey, outData);
+	test_decrypt(skey, outData);
 	// test_crypto();
 	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
