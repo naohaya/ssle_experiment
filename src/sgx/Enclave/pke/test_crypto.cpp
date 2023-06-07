@@ -43,7 +43,7 @@ int test_key_create(void *pkey, void *skey)
         ocall_print("Private key generation failed");
         ocall_print(std::to_string(ret_create_private_key).c_str());
         ret = -1;
-    }
+    } 
 
     //void *public_key = NULL;
     unsigned char public_key[256];
@@ -204,6 +204,11 @@ void test_crypto()
     {
         ocall_print("Public key generation failed");
         ocall_print(std::to_string(ret_create_public_key).c_str());
+    } else {
+        ocall_print("Public key:");
+        ocall_print((char *)public_key);
+        ocall_print("Private key:");
+        ocall_print((char *)private_key);
     }
 
     char *pin_data = "Hello World!";
