@@ -74,12 +74,15 @@ int test_key_create(void *pkey, void *skey)
     memcpy(skey, private_key, 256);
 
     // check copied key is empty or not
-    /*
-    if (pkey == NULL)
+
+    if (pkey != NULL)
     {
+        ocall_print("pkey is ");
+        ocall_print((char *)pkey);
+    } else {
         ocall_print("pkey is NULL");
     }
-    */
+
 
     return ret;
 
