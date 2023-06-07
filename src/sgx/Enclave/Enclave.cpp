@@ -73,16 +73,21 @@ int ecall_election(const uint64_t *prfkey,
 	void *pkey = NULL;
 	//unsigned char skey[256];
 	void *skey = NULL;
-	test_key_create(pkey, skey);
+	test_key_create(pkey, skey); // generation of pub/sec keys.
+
+	// check the generated public key
+	// public key is NULL here
 	if (pkey != NULL) {
 		ocall_print("public key");
 		ocall_print((char *)pkey);
 	} else {
 		ocall_print("public key is NULL");
 	}
-	test_encrypt(pkey, outData);
-	test_decrypt(skey, outData);
-	//test_crypto();
+
+	test_encrypt(pkey, outData); // encryption test by public key
+	test_decrypt(skey, outData); // decryption test by public key
+
+	//test_crypto(); // just copy from the sample code (it works corectlly).
 	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
