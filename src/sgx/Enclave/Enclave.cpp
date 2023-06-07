@@ -70,11 +70,13 @@ int ecall_election(const uint64_t *prfkey,
 
 	/* pke encryption test */
 	//unsigned char pkey[256];
+	void *pkey = NULL;
 	//unsigned char skey[256];
-	//test_key_create(pkey, skey);
-	//test_encrypt(pkey, outData);
-	//test_decrypt(skey, outData);
-	test_crypto();
+	void *skey = NULL;
+	test_key_create(pkey, skey);
+	test_encrypt(pkey, outData);
+	test_decrypt(skey, outData);
+	//test_crypto();
 	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
