@@ -187,7 +187,7 @@ void test_crypto()
     }
 
     //void *private_key = NULL;
-    unsigned char private_key[256];
+    void private_key[256];
 
     sgx_status_t ret_create_private_key = sgx_create_rsa_priv2_key(n_byte_size, sizeof(e), (unsigned char *)&e, p_p, p_q, p_dmp1, p_dmq1, p_iqmp, &private_key);
 
@@ -198,7 +198,7 @@ void test_crypto()
     }
 
     //void *public_key = NULL;
-    unsigned char public_key[256];
+    void public_key[256];
 
     sgx_status_t ret_create_public_key = sgx_create_rsa_pub1_key(n_byte_size, sizeof(e), p_n, (unsigned char *)&e, &public_key);
 
