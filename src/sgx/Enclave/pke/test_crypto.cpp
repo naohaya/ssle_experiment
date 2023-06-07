@@ -57,9 +57,7 @@ int test_key_create(void *pkey, void *skey)
         ret = -1;
     }
     else {
-        if (public_key == NULL) {
-            ocall_print("public_key is NULL");
-        }
+
         ocall_print("Public key size: ");
         ocall_print(std::to_string(sizeof(public_key)).c_str());
         ocall_print((char *)public_key);
@@ -73,6 +71,11 @@ int test_key_create(void *pkey, void *skey)
 
     memcpy(pkey, public_key, 256);
     memcpy(skey, private_key, 256);
+
+    if (pkey == NULL)
+    {
+        ocall_print("pkey is NULL");
+    }
 
     return ret;
 
