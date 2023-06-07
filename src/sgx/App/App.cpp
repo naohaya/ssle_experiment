@@ -144,8 +144,7 @@ int main(int argc, char *argv[])
     std::ostringstream oss;
 
     /*** cmdline analysis ***/
-    if (argc == 4)
-    {
+    if (argc == 4) {
         localport = std::atoi(argv[2]);
         remoteport = std::atoi(argv[3]);
 
@@ -155,16 +154,18 @@ int main(int argc, char *argv[])
             leader = true;
         }
     }
-    else if (argc == 2) 
-    {
+    else if (argc == 2) {
         if (std::atoi(argv[1]))
         {
             leader = true;
         }
-    } else
-    {
+    } else if (argc < 2) {
+        leader = true; // test mode.
+    }
+    else {
         std::cout << "./app <flag> [local port], [remote port]" << std::endl;
         exit(1);
+
     }
 
     thisNode = Node("127.0.0.1", localport);
