@@ -77,7 +77,7 @@ int test_key_create(void *pkey, void *skey)
     // pkey is not NULL here.
     if (pkey != NULL)
     {
-        ocall_print("pkey is ");
+        ocall_print("pkey is:");
         ocall_print((char *)pkey);
     } else {
         ocall_print("pkey is NULL");

@@ -78,7 +78,7 @@ int ecall_election(const uint64_t *prfkey,
 	// check the generated public key
 	// public key is NULL here
 	if (pkey != NULL) {
-		ocall_print("public key");
+		ocall_print("public key:");
 		ocall_print((char *)pkey);
 	} else {
 		ocall_print("public key is NULL");

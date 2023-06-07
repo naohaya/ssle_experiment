@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
 
         /* 1) Obtaining an (encrypted) (P)PRF key */
         sgx_status_t status4 = ecall_get_key(global_eid, &retval, prfkey);
-        std::cout << "pkey: " << *prfkey << std::endl;
+        std::cout << "PRF key: " << *prfkey << std::endl;
         /*
         if (status4 != SGX_SUCCESS)
         {
