@@ -53,7 +53,7 @@ int ecall_election(const uint64_t *prfkey,
 	/* pke encryption test */
 	// unsigned char *outData = (unsigned char *) malloc (255);
 	unsigned char *outData = NULL;
-	size_t outlen = 255;
+	size_t outlen = 256;
 
 	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
 
@@ -69,12 +69,12 @@ int ecall_election(const uint64_t *prfkey,
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* pke encryption test */
-	//void *pkey = NULL;
-	//void *skey = NULL;
-	//test_key_create(pkey, skey);
-	//test_encrypt(pkey, outData);
-	//test_decrypt(skey, outData);
-	test_crypto();
+	void *pkey = NULL;
+	void *skey = NULL;
+	test_key_create(pkey, skey);
+	test_encrypt(pkey, outData);
+	test_decrypt(skey, outData);
+	// test_crypto();
 	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
