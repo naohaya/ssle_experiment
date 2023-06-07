@@ -139,8 +139,8 @@ int main(int argc, char *argv[])
 
     Node remoteNode;
     int inconnect;
-    int localport;
-    int remoteport;
+    int localport = 1234;
+    int remoteport = 2345;
     std::ostringstream oss;
 
     /*** cmdline analysis ***/
@@ -148,18 +148,27 @@ int main(int argc, char *argv[])
     {
         localport = std::atoi(argv[2]);
         remoteport = std::atoi(argv[3]);
-        thisNode = Node("127.0.0.1", localport);
-        remoteNode = Node("127.0.0.1", remoteport);
+
 
         if (std::atoi(argv[1]))
         {
             leader = true;
         }
     }
-    else
+    else if (argc == 2) 
     {
-        std::cout << "./app <flag> <local port>, <remote port>" << std::endl;
+        if (std::atoi(argv[1]))
+        {
+            leader = true;
+        }
+    } else
+    {
+        std::cout << "./app <flag> [local port], [remote port]" << std::endl;
+        exit(1);
     }
+
+    thisNode = Node("127.0.0.1", localport);
+    remoteNode = Node("127.0.0.1", remoteport);
 
     if (leader)
     { // what a leader does
