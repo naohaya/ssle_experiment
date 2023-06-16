@@ -69,17 +69,17 @@ int ecall_election(const uint64_t *prfkey,
 //	memcpy(ret, result.c_str(), result.length());
 
 	/* pke encryption test */
-	//unsigned char pkey[256];
-	void *pkey = NULL;
-	//unsigned char skey[256];
-	void *skey = NULL;
+	unsigned char pkey[256];
+	//void *pkey = NULL;
+	unsigned char skey[256];
+	//void *skey = NULL;
 	test_key_create(pkey, skey); // generation of pub/sec keys.
 
 	// check the generated public key
 	// public key is NULL here
-	if (pubkey != NULL) {
+	if (pkey != NULL) {
 		ocall_print("public key:");
-		ocall_print((char *)pubkey);
+		ocall_print((char *)pkey);
 	} else {
 		ocall_print("public key is NULL");
 	}
