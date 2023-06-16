@@ -77,15 +77,15 @@ int ecall_election(const uint64_t *prfkey,
 
 	// check the generated public key
 	// public key is NULL here
-	if (pkey != NULL) {
+	if (pubkey != NULL) {
 		ocall_print("public key:");
-		ocall_print((char *)pkey);
+		ocall_print((char *)pubkey);
 	} else {
 		ocall_print("public key is NULL");
 	}
 
-	test_encrypt(pkey, outData); // encryption test by public key
-	test_decrypt(skey, outData); // decryption test by public key
+	test_encrypt(pubkey, outData); // encryption test by public key
+	test_decrypt(seckey, outData); // decryption test by public key
 
 	//test_crypto(); // just copy from the sample code (it works corectlly).
 	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
