@@ -7,7 +7,7 @@
 #define ADD_ENC_DATA_SIZE (SGX_AESGCM_MAC_SIZE + SGX_AESGCM_IV_SIZE)
 
 #define ENABLE_CRYPTO
-
+static sgx_aes_gcm_128bit_key_t gcmkey = {0x76, 0x39, 0x79, 0x24, 0x42, 0x26, 0x45, 0x28, 0x48, 0x2b, 0x4d, 0x3b, 0x62, 0x51, 0x5e, 0x8f};
 sgx_aes_ctr_128bit_key_t ctrkey;
 
 sgx_aes_ctr_128bit_key_t *create_aes_key()
@@ -22,7 +22,7 @@ sgx_aes_ctr_128bit_key_t *create_aes_key()
     return newkey;
 }
 
-int encrypt_aes(sgx_aes_gcm_128bit_key_t key, void *dataIn, size_t len, char *dataOut, size_t lenOut)
+int encrypt_aes(void *dataIn, size_t len, char *dataOut, size_t lenOut)
 {
     uint8_t *clairText = (uint8_t *)dataIn;
     uint8_t p_dst[BUFLEN] = {0};
@@ -36,7 +36,7 @@ int encrypt_aes(sgx_aes_gcm_128bit_key_t key, void *dataIn, size_t len, char *da
     sgx_read_rand(p_dst + SGX_AESGCM_MAC_SIZE, SGX_AESGCM_IV_SIZE);
 
     sgx_rijndael128GCM_encrypt(
-        key,
+        &gcmkey,
         clairText, len,
         p_dst + SGX_AESGCM_MAC_SIZE + SGX_AESGCM_IV_SIZE,
         p_dst + SGX_AESGCM_MAC_SIZE, SGX_AESGCM_IV_SIZE,
@@ -63,7 +63,7 @@ int encrypt_aes_ctr(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const
     return 0;
 }
 
-int decrypt_aes(sgx_aes_gcm_128bit_key_t key, char *dataIn, size_t len, void *dataOut, size_t lenOut)
+int decrypt_aes(char *dataIn, size_t len, void *dataOut, size_t lenOut)
 {
     uint8_t *cipherText = (uint8_t *)dataIn;
     uint8_t p_dst[BUFLEN] = {0};
@@ -71,7 +71,7 @@ int decrypt_aes(sgx_aes_gcm_128bit_key_t key, char *dataIn, size_t len, void *da
 
     // decryption
     sgx_rijndael128GCM_decrypt(
-        key,
+        &gcmkey,
         cipherText + SGX_AESGCM_MAC_SIZE + SGX_AESGCM_IV_SIZE,
         lenOut,
         p_dst,

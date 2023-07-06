@@ -98,7 +98,7 @@ int ecall_election(const uint64_t *prfkey,
 	// sgx_aes_ctr_128bit_key_t *key; 
 	// key = create_aes_key();
 
-	int encret = encrypt_aes(key, (void *)inData, sizeof(inData), outData, outlen);
+	int encret = encrypt_aes((void *)inData, sizeof(inData), outData, outlen);
 	ocall_print("Encrypted data:");
 	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
