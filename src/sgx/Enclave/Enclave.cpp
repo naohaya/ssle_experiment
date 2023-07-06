@@ -93,8 +93,8 @@ int ecall_election(const uint64_t *prfkey,
 	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
-	const uint8_t *inData = (uint8_t *)ret;
-	char outData[BUFFLEN] = {0};
+	//const uint8_t *inData = (uint8_t *)ret;
+	unsigned char outData[BUFFLEN] = {0};
 	// sgx_aes_ctr_128bit_key_t *key; 
 	// key = create_aes_key();
 
