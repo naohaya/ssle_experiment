@@ -1,6 +1,14 @@
 #include "crypto.h"
 
-sgx_aes_ctr_128bit_key_t key;
+#define BUFLEN 4 * 1024 * 1024 //1MB: increase this if you have to encrypt larger buffers
+#define SGX_AESGCM_MAC_SIZE 16   //128 bit mac
+#define SGX_AESGCM_IV_SIZE 12    // 96 bit iv
+#define CIPHERTEXT_SIZE 36
+#define ADD_ENC_DATA_SIZE (SGX_AESGCM_MAC_SIZE + SGX_AESGCM_IV_SIZE)
+
+#define ENABLE_CRYPTO
+
+//sgx_aes_ctr_128bit_key_t key;
 
 sgx_aes_ctr_128bit_key_t *create_aes_key()
 {
@@ -17,7 +25,7 @@ sgx_aes_ctr_128bit_key_t *create_aes_key()
 int encrypt_aes(sgx_aes_gcm_128bit_key_t key, void *dataIn, size_t len, char *dataOut, size_t lenOut)
 {
     uint8_t *clairText = (uint8_t *)dataIn;
-    uint8_t p_dst[BUFFLEN] = {0};
+    uint8_t p_dst[BUFLEN] = {0};
     const uint32_t num_inc_bits = 128;
 
     // encryption
@@ -28,7 +36,7 @@ int encrypt_aes(sgx_aes_gcm_128bit_key_t key, void *dataIn, size_t len, char *da
     sgx_read_rand(p_dst + SGX_AESGCM_MAC_SIZE, SGX_AESGCM_IV_SIZE);
 
     sgx_rijndael128GCM_encrypt(
-        &key,
+        key,
         clairText, len,
         p_dst + SGX_AESGCM_MAC_SIZE + SGX_AESGCM_IV_SIZE,
         p_dst + SGX_AESGCM_MAC_SIZE, SGX_AESGCM_IV_SIZE,
@@ -42,7 +50,7 @@ int encrypt_aes_ctr(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const
 {
     //    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
     const uint32_t ctr_inc_bits = 128;
-    uint8_t dest[BUFFLEN] = {0};
+    uint8_t dest[BUFLEN] = {0};
     //    p_dest = (uint8_t *)malloc(sizeof(dest));
 
     sgx_status_t ret = sgx_aes_ctr_encrypt(p_key, p_src, src_len, dest, ctr_inc_bits, dest + SGX_AES_IV_SIZE);
@@ -63,7 +71,7 @@ int decrypt_aes(sgx_aes_gcm_128bit_key_t key, char *dataIn, size_t len, void *da
 
     // decryption
     sgx_rijndael128GCM_decrypt(
-        &key,
+        key,
         cipherText + SGX_AESGCM_MAC_SIZE + SGX_AESGCM_IV_SIZE,
         lenOut,
         p_dst,
