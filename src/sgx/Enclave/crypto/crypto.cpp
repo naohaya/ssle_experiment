@@ -8,16 +8,16 @@
 
 #define ENABLE_CRYPTO
 
-//sgx_aes_ctr_128bit_key_t key;
+sgx_aes_ctr_128bit_key_t ctrkey;
 
 sgx_aes_ctr_128bit_key_t *create_aes_key()
 {
     sgx_aes_ctr_128bit_key_t *newkey = (sgx_aes_ctr_128bit_key_t *)malloc(sizeof(sgx_aes_ctr_128bit_key_t));
     for (int i = 0; i < 16; i++)
     {
-        key[i] = random_item(256);
+        ctrkey[i] = random_item(256);
     }
-    memcpy(newkey, key, sizeof(sgx_aes_ctr_128bit_key_t));
+    memcpy(newkey, ctrkey, sizeof(sgx_aes_ctr_128bit_key_t));
 
     return newkey;
 }
