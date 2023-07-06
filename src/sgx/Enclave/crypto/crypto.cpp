@@ -2,28 +2,53 @@
 
 sgx_aes_ctr_128bit_key_t key;
 
-sgx_aes_ctr_128bit_key_t * create_aes_key()
+sgx_aes_ctr_128bit_key_t *create_aes_key()
 {
     sgx_aes_ctr_128bit_key_t *newkey = (sgx_aes_ctr_128bit_key_t *)malloc(sizeof(sgx_aes_ctr_128bit_key_t));
-    for(int i=0; i<16; i++)
+    for (int i = 0; i < 16; i++)
     {
         key[i] = random_item(256);
     }
     memcpy(newkey, key, sizeof(sgx_aes_ctr_128bit_key_t));
 
     return newkey;
-    
 }
 
-int encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
+int encrypt_aes(sgx_aes_gcm_128bit_key_t key, void *dataIn, size_t len, char *dataOut, size_t lenOut)
 {
-//    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
+    memcpy(key, enc_key, 16);
+    uint8_t *clairText = (uint8_t *)dataIn;
+    uint8_t p_dst[BUFLEN] = {0};
+    const uint32_t num_inc_bits = 128;
+
+    // encryption
+    /*
+     If the IV/nonce is random, it can be combined together with the counter (XOR, addition etc)
+    to produce the actual unique counter block for encryption */
+
+    sgx_read_rand(p_dst + SGX_AESGCM_MAC_SIZE, SGX_AESGCM_IV_SIZE);
+
+    sgx_rijndael128GCM_encrypt(
+        &key,
+        clairText, len,
+        p_dst + SGX_AESGCM_MAC_SIZE + SGX_AESGCM_IV_SIZE,
+        p_dst + SGX_AESGCM_MAC_SIZE, SGX_AESGCM_IV_SIZE,
+        NULL, 0,
+        (sgx_aes_gcm_128bit_tag_t *)(p_dst));
+    // dataOut[lenOut] = '\0'; //Terminate encrypted data
+    memcpy(dataOut, p_dst, lenOut);
+}
+
+int encrypt_aes_ctr(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
+{
+    //    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
     const uint32_t ctr_inc_bits = 128;
     uint8_t dest[BUFFLEN] = {0};
-//    p_dest = (uint8_t *)malloc(sizeof(dest));
+    //    p_dest = (uint8_t *)malloc(sizeof(dest));
 
     sgx_status_t ret = sgx_aes_ctr_encrypt(p_key, p_src, src_len, dest, ctr_inc_bits, dest + SGX_AES_IV_SIZE);
-    if (ret != SGX_SUCCESS) {
+    if (ret != SGX_SUCCESS)
+    {
         return -1;
     }
     memcpy(p_dest, dest, src_len + ADD_ENC_DATA_SIZE);
@@ -31,11 +56,31 @@ int encrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int
     return 0;
 }
 
-int decrypt_aes(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
+int decrypt_aes(sgx_aes_gcm_128bit_key_t key, char *dataIn, size_t len, void *dataOut, size_t lenOut)
+{
+    memcpy(key, enc_key, 16);
+    uint8_t *cipherText = (uint8_t *)dataIn;
+    uint8_t p_dst[BUFLEN] = {0};
+    const uint32_t num_inc_bits = 128;
+
+    // decryption
+    sgx_rijndael128GCM_decrypt(
+        &key,
+        cipherText + SGX_AESGCM_MAC_SIZE + SGX_AESGCM_IV_SIZE,
+        lenOut,
+        p_dst,
+        cipherText + SGX_AESGCM_MAC_SIZE, SGX_AESGCM_IV_SIZE,
+        NULL, 0,
+        (sgx_aes_gcm_128bit_tag_t *)cipherText);
+    // dataOut[lenOut] = '\0';
+    memcpy(dataOut, p_dst, lenOut);
+}
+
+int decrypt_aes_ctr(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const int src_len, uint8_t *p_dest)
 {
     const uint32_t ctr_inc_bits = 128;
-    uint8_t *indata = (uint8_t *) malloc(sizeof(uint8_t));
-//    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
+    uint8_t *indata = (uint8_t *)malloc(sizeof(uint8_t));
+    //    uint8_t *p_ctr = (uint8_t)"0x12345F"; // initialization vector
     memcpy(indata, p_src, src_len);
 
     sgx_aes_ctr_decrypt(p_key, indata + SGX_AES_IV_SIZE, src_len, indata, ctr_inc_bits, p_dest);
@@ -47,5 +92,5 @@ int random_item(int size)
 {
     uint32_t rand;
     sgx_read_rand((unsigned char *)&rand, 4);
-    return rand%size;
+    return rand % size;
 }

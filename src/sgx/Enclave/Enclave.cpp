@@ -19,6 +19,7 @@ unsigned char *testkey = (unsigned char *)"01234567890123456789012345678901";
 unsigned char ciphertext[1048];
 unsigned char pubkey[256];
 unsigned char seckey[256];
+static sgx_aes_gcm_128bit_key_t key = {0x76, 0x39, 0x79, 0x24, 0x42, 0x26, 0x45, 0x28, 0x48, 0x2b, 0x4d, 0x3b, 0x62, 0x51, 0x5e, 0x8f};
 
 int ecall_test(const char *message, size_t message_len)
 {
@@ -84,21 +85,22 @@ int ecall_election(const uint64_t *prfkey,
 		ocall_print("public key is NULL");
 	}
 
-	test_encrypt(pkey, outData); // encryption test by public key
-	test_decrypt(skey, outData); // decryption test by public key
+
+	//test_encrypt(pkey, outData); // encryption test by public key
+	//test_decrypt(skey, outData); // decryption test by public key
 
 	//test_crypto(); // just copy from the sample code (it works corectlly).
 	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
-	// const uint8_t *inData = (uint8_t *)ret;
-	// uint8_t outData[BUFFLEN] = {0};
+	const uint8_t *inData = (uint8_t *)ret;
+	char outData[BUFFLEN] = {0};
 	// sgx_aes_ctr_128bit_key_t *key; 
 	// key = create_aes_key();
 
-	// int encret = encrypt_aes(key, inData, sizeof(uint8_t), outData);
-	// ocall_print("Encrypted data:");
-	// ocall_print((char *)outData);
+	int encret = encrypt_aes(key, (void *)inData, sizeof(inData), outData);
+	ocall_print("Encrypted data:");
+	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
 	
 //	ocall_print(ssleobf.getRandKey().c_str()); // random key
