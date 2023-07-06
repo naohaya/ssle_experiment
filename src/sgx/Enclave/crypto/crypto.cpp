@@ -16,9 +16,8 @@ sgx_aes_ctr_128bit_key_t *create_aes_key()
 
 int encrypt_aes(sgx_aes_gcm_128bit_key_t key, void *dataIn, size_t len, char *dataOut, size_t lenOut)
 {
-    memcpy(key, enc_key, 16);
     uint8_t *clairText = (uint8_t *)dataIn;
-    uint8_t p_dst[BUFLEN] = {0};
+    uint8_t p_dst[BUFFLEN] = {0};
     const uint32_t num_inc_bits = 128;
 
     // encryption
@@ -58,7 +57,6 @@ int encrypt_aes_ctr(sgx_aes_ctr_128bit_key_t *p_key, const uint8_t *p_src, const
 
 int decrypt_aes(sgx_aes_gcm_128bit_key_t key, char *dataIn, size_t len, void *dataOut, size_t lenOut)
 {
-    memcpy(key, enc_key, 16);
     uint8_t *cipherText = (uint8_t *)dataIn;
     uint8_t p_dst[BUFLEN] = {0};
     const uint32_t num_inc_bits = 128;
