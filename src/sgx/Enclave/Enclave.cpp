@@ -53,7 +53,7 @@ int ecall_election(const uint64_t *prfkey,
 
 	/* pke encryption test */
 	// unsigned char *outData = (unsigned char *) malloc (255);
-	//unsigned char *outData = NULL;
+	unsigned char *outData = NULL;
 	size_t outlen = 256;
 
 	sgx_status_t retv = create_rsa_pair(pubkey, seckey);
@@ -89,7 +89,7 @@ int ecall_election(const uint64_t *prfkey,
 	*/
 
 
-	test_encrypt(pkey, outData); // encryption test by public key
+	test_encrypt(pubkey, outData); // encryption test by public key
 	//test_decrypt(skey, outData); // decryption test by public key
 
 	//test_crypto(); // just copy from the sample code (it works corectlly).
@@ -97,14 +97,14 @@ int ecall_election(const uint64_t *prfkey,
 
 	/* test for common key based encryption  */
 	//const uint8_t *inData = (uint8_t *)ret;
-	char outData[BUFFLEN] = {0};
+//	char outData[BUFFLEN] = {0};
 	//sgx_aes_ctr_128bit_key_t *key; 
 	//key = create_aes_key();
 
 //	int encret = encrypt_aes((void *)inData, sizeof(inData), outData, outlen);
 	ocall_print("Encrypted data:");
-	ocall_print((char *)ciphertext);
-//	ocall_print((char *)outData);
+//	ocall_print((char *)ciphertext);
+	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
 	
 //	ocall_print(ssleobf.getRandKey().c_str()); // random key
