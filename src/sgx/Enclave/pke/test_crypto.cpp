@@ -170,6 +170,60 @@ int test_decrypt(void *skey, unsigned char *ciphertext)
     }
 }
 
+void test_crypto_with_keys(void *public_key, void *private_key)
+{
+    char *pin_data = "Hello World!";
+    size_t out_len = 0;
+
+    sgx_status_t ret_get_output_len = sgx_rsa_pub_encrypt_sha256(public_key, NULL, &out_len, (unsigned char *)pin_data, strlen(pin_data));
+
+    if (ret_get_output_len != SGX_SUCCESS)
+    {
+        ocall_print("Determination of output length failed");
+        ocall_print(std::to_string(ret_get_output_len).c_str());
+    }
+
+    unsigned char pout_data[out_len];
+
+    sgx_status_t ret_encrypt = sgx_rsa_pub_encrypt_sha256(public_key, pout_data, &out_len, (unsigned char *)pin_data, strlen(pin_data));
+
+    if (ret_encrypt != SGX_SUCCESS)
+    {
+        ocall_print("Encryption failed");
+        ocall_print(std::to_string(ret_encrypt).c_str());
+    }
+    else
+    {
+        ocall_print(std::to_string(out_len).c_str());
+    }
+
+    size_t decrypted_out_len = 0;
+
+    sgx_status_t ret_determine_decrypt_len = sgx_rsa_priv_decrypt_sha256(private_key, NULL, &decrypted_out_len, pout_data, sizeof(pout_data));
+
+    if (ret_determine_decrypt_len != SGX_SUCCESS)
+    {
+        ocall_print("Determination of decrypted output length failed");
+        ocall_print(std::to_string(ret_determine_decrypt_len).c_str());
+    }
+
+    unsigned char decrypted_pout_data[decrypted_out_len];
+
+    sgx_status_t ret_decrypt = sgx_rsa_priv_decrypt_sha256(private_key, decrypted_pout_data, &decrypted_out_len, pout_data, sizeof(pout_data));
+
+    if (ret_decrypt != SGX_SUCCESS)
+    {
+        ocall_print("Decryption failed");
+        ocall_print(std::to_string(ret_decrypt).c_str());
+    }
+    else
+    {
+        ocall_print("Decrypted MESSAGE:");
+        ocall_print((char *)decrypted_pout_data);
+        ocall_print(std::to_string(decrypted_out_len).c_str());
+    }
+}
+
 void test_crypto()
 {
 
