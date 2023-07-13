@@ -172,6 +172,7 @@ int test_decrypt(void *skey, unsigned char *ciphertext)
 
 void test_crypto_with_keys(void *public_key, void *private_key)
 {
+    /*--- Encryption ---*/
     char *pin_data = "Hello World!";
     size_t out_len = 0;
 
@@ -197,6 +198,7 @@ void test_crypto_with_keys(void *public_key, void *private_key)
         ocall_print(std::to_string(out_len).c_str());
     }
 
+    /*--- Dencryption ---*/
     size_t decrypted_out_len = 0;
 
     sgx_status_t ret_determine_decrypt_len = sgx_rsa_priv_decrypt_sha256(private_key, NULL, &decrypted_out_len, pout_data, sizeof(pout_data));
@@ -226,6 +228,8 @@ void test_crypto_with_keys(void *public_key, void *private_key)
 
 void test_crypto()
 {
+
+    /*--- Key generation ---*/
 
     unsigned char p_n[256];
     unsigned char p_d[256];
@@ -277,6 +281,8 @@ void test_crypto()
         ocall_print((char *)private_key);
     }
 
+
+    /*--- Encryption ---*/
     char *pin_data = "Hello World!";
     size_t out_len = 0;
 
@@ -301,6 +307,8 @@ void test_crypto()
     {
         ocall_print(std::to_string(out_len).c_str());
     }
+
+    /*--- Decryption ---*/
 
     size_t decrypted_out_len = 0;
 
