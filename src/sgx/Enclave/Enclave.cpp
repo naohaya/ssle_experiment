@@ -90,7 +90,7 @@ int ecall_election(const uint64_t *prfkey,
 	//test_decrypt(skey, outData); // decryption test by public key
 
 	//test_crypto(); // just copy from the sample code (it works corectlly).
-	//int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
+	int ret = encrypt(pubkey, inData, 5, ciphertext, &outlen);
 
 	/* test for common key based encryption  */
 	//const uint8_t *inData = (uint8_t *)ret;
@@ -100,7 +100,8 @@ int ecall_election(const uint64_t *prfkey,
 
 	//int encret = encrypt_aes((void *)inData, sizeof(inData), outData, outlen);
 	ocall_print("Encrypted data:");
-	ocall_print((char *)outData);
+	ocall_print((char *)ciphertext);
+//	ocall_print((char *)outData);
 //	ocall_print((char *)outlen);
 	
 //	ocall_print(ssleobf.getRandKey().c_str()); // random key
