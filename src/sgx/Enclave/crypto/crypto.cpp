@@ -24,6 +24,7 @@ sgx_aes_ctr_128bit_key_t *create_aes_key()
 
 int encrypt_aes(void *dataIn, size_t len, char *dataOut, size_t lenOut)
 {
+    ocall_print("hoge");
     uint8_t *clairText = (uint8_t *)dataIn;
     uint8_t p_dst[BUFLEN] = {0};
     const uint32_t num_inc_bits = 128;
@@ -34,7 +35,7 @@ int encrypt_aes(void *dataIn, size_t len, char *dataOut, size_t lenOut)
     to produce the actual unique counter block for encryption */
 
     sgx_read_rand(p_dst + SGX_AESGCM_MAC_SIZE, SGX_AESGCM_IV_SIZE);
-    ocall_print("hoge");
+
     sgx_rijndael128GCM_encrypt(
         &gcmkey,
         clairText, len,
