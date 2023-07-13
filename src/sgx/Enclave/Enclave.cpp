@@ -88,7 +88,7 @@ int ecall_election(const uint64_t *prfkey,
 	}
 	*/
 
-	ocall_print("hoge");
+
 	//test_encrypt(pkey, outData); // encryption test by public key
 	//test_decrypt(skey, outData); // decryption test by public key
 
@@ -101,6 +101,7 @@ int ecall_election(const uint64_t *prfkey,
 	// sgx_aes_ctr_128bit_key_t *key; 
 	// key = create_aes_key();
 
+	ocall_print("hoge");
 	int encret = encrypt_aes((void *)inData, sizeof(inData), outData, outlen);
 	ocall_print("Encrypted data:");
 //	ocall_print((char *)ciphertext);
