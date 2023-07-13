@@ -24,7 +24,6 @@ sgx_aes_ctr_128bit_key_t *create_aes_key()
 
 int encrypt_aes(void *dataIn, size_t len, char *dataOut, size_t lenOut)
 {
-    ocall_print("hoge");
     uint8_t *clairText = (uint8_t *)dataIn;
     uint8_t p_dst[BUFLEN] = {0};
     const uint32_t num_inc_bits = 128;
