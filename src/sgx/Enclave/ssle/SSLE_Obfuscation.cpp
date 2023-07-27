@@ -80,7 +80,7 @@ void SSLE_Obfuscation::electLeader()
 
         }
 
-        comm_values[i] = -1; //*cmt;
+        comm_values[i] = -1;   //*cmt;
     }
 
 }
