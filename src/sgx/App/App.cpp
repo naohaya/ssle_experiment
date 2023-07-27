@@ -259,9 +259,7 @@ int main(int argc, char *argv[])
             std::cout << "You win" << std::endl;
         }
         else {
-            std::cout << "Decommit value: " << std::endl;
-            std::cout.setf(std::ios::hex, std::ios::basefield);
-            std::cout << (unsigned char)*res << std::endl;
+            std::cout << "Decommit value: " << (unsigned char)*res << std::endl;
         }
 
 
@@ -438,6 +436,7 @@ uint64_t * commit(uint64_t *data, uint64_t *prfkey)
 {
     uint64_t inData = *data;
     uint64_t prf = *prfkey;
+    std:cout << inData << ":" << prf << std::endl;
     uint64_t cmtdata = inData ^ prf;
 
     return &cmtdata;
