@@ -251,10 +251,14 @@ int main(int argc, char *argv[])
 
         std::cout << "Committed Value: " << *output << std::endl;
 
+        uint64_t test1 = 7450515431689900718;
+        uint64_t test2 = 18446744073709551615;
+
         // test for commitment value
         uint64_t win = 0xFF;
         uint64_t lose = 0x11;
-        uint64_t *res = commit(output, prfkey);
+        uint64_t *res = commit(&test1, &test2);
+        //uint64_t *res = commit(output, prfkey);
         if (*res == win) {
             std::cout << "You win" << std::endl;
         }
