@@ -68,6 +68,9 @@ void SSLE_Obfuscation::electLeader()
             if (*testcmt != win) {
                 ocall_print("commit fails.");
             }
+            else{
+                ocall_print((unsigned char)*testcmt);
+            }
         } else {
             cmt = commit(&lose, &prfValue);
 
@@ -75,6 +78,9 @@ void SSLE_Obfuscation::electLeader()
             testcmt = commit(cmt, &prfValue);
             if (*testcmt != lose) {
                 ocall_print("commit fails.");
+            }
+            else{
+                ocall_print((unsigned char)*testcmt);
             }
         }
 
