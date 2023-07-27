@@ -66,8 +66,7 @@ void SSLE_Obfuscation::electLeader()
             // test for decommit
             testcmt = commit(cmt, &prfValue);
             if (*testcmt != win) {
-                ocall_print("commit fails.");
-                exit(1);
+                *cmt = -1;
             }
 
         } else {
@@ -76,8 +75,7 @@ void SSLE_Obfuscation::electLeader()
             // test for decommit
             testcmt = commit(cmt, &prfValue);
             if (*testcmt != lose) {
-                ocall_print("commit fails.");
-                exit(1);
+                *cmt = -1;
             }
 
         }
