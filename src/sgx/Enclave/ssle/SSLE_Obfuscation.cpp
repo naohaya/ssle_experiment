@@ -68,7 +68,7 @@ void SSLE_Obfuscation::electLeader()
         comm_values[i] = *cmt;
     }
 
-    ocall_print((unsigned char)comm_value[i]);
+    ocall_print((unsigned char)comm_value[0]);
 
 }
 
