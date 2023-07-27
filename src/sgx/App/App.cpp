@@ -259,7 +259,9 @@ int main(int argc, char *argv[])
             std::cout << "You win" << std::endl;
         }
         else {
-            std::cout<< "Decommit value: " << (unsigned char)*res << std::endl;
+            std::cout << "Decommit value: " << std::endl;
+            std::cout.setf(std::ios::hex, std::ios::basefield);
+            std::cout << (unsigned char)*res << std::endl;
         }
 
 
