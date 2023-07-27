@@ -28,7 +28,7 @@ using namespace std;
 Node registration(std::string);
 void ocall_print(const char *);
 void ocall_return_pubkey(uint8_t *, long *);
-uint64_t commit(uint64_t *, uint64_t *);
+uint64_t *commit(uint64_t *, uint64_t *);
 
 std::vector<Node> nodes; // participants
 Node thisNode; // current node.
@@ -200,7 +200,7 @@ int main(int argc, char *argv[])
         const int num = 3;
         uint64_t *prfkey = (uint64_t *)malloc(sizeof(uint64_t)); // pprf key
         int retval2 = -9999;
-        uint64_t *output = (uint64_t *)malloc(sizeof(uint64_t));
+        uint64_t *output = (uint64_t *)malloc(sizeof(uint64_t)); // commit value
         uint64_t *encryptedData = (uint64_t *)malloc(sizeof(uint64_t));
 
         std::cout << "Execute ECALL.\n"
