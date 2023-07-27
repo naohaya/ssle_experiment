@@ -69,7 +69,8 @@ int ecall_election(const uint64_t *prfkey,
 	result = ssleobf.getPunctKey();
 //	memcpy(ret, result.c_str(), result.length());
 
-	/* pke encryption test */
+	/*** Disabled ***
+	// pke encryption test 
 	// the following key generation code works well
 	unsigned char pkey[256];
 	//void *pkey = NULL;
@@ -86,6 +87,8 @@ int ecall_election(const uint64_t *prfkey,
 	} else {
 		ocall_print("public key is NULL");
 	}
+	
+	*** Disabled ****/
 	
 
 
