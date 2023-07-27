@@ -122,16 +122,20 @@ uint64_t * SSLE_Obfuscation::commit(uint64_t *data, uint64_t *prfkey)
     return cmtdata;
 }
 
+// test commit impl.
 string SSLE_Obfuscation::commit(string val)
 {
     char rand[10];
     uint32_t rand_val;
     uint32_t result;
     uint32_t input = stringToUint32(val);
+
     sgx_read_rand((unsigned char *)&rand_val, 4);
+
 
     result = input ^ rand_val;
 
     return uint32ToBinString(result);
 
 }
+

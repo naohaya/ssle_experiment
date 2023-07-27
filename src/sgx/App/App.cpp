@@ -250,6 +250,18 @@ int main(int argc, char *argv[])
 
         std::cout << "Committed Value: " << *output << std::endl;
 
+        // test for commitment value
+        uint64_t win = 0xFF;
+        uint64_t lose = 0x11;
+        uint64_t res = commit(output, prfkey);
+        if (res == win) {
+            std::cout << "You win" << std::endl;
+        }
+        else {
+            std::cout<< "Decommit value: " << res << std::endl;
+        }
+
+
 
         /* print ECALL result */
         std::cout << "\nReturned integer from ECALL is: " << retval2 << std::endl;
@@ -417,6 +429,25 @@ void readCmdline(int argc, char *argv[]){
 
     batchRegistration(remotehost);
 
+}
+
+uint64_t * commit(uint64_t *data, uint64_t *prfkey)
+{
+    unsigned char *cdata = (unsigned char *)data;
+    unsigned char *cprfkey = (unsigned char *)prfkey;
+    unsigned char *result = (unsigned char *)malloc(sizeof(cdata) * sizeof(unsigned char));
+    size_t len = sizeof(cdata) / sizeof(unsigned char);
+
+    for (size_t i = 0; i < len; i ++){
+        result[i] = cdata[i] ^ cprfkey[i];
+    }
+
+    uint64_t *cmtdata = (uint64_t *)result;
+//    uint64_t *cmtdata = *data ^ *prfkey; // error of mismatching operand types.
+
+//    uint64_t *cmtdata = (uint64_t *)malloc(sizeof(uint64_t));
+
+    return cmtdata;
 }
 
 
