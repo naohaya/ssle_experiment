@@ -3,7 +3,7 @@
 * Author: Naohiro Hayashibara
 * Created: Fri. 17 Mar. 2023
 */
-
+#include "Enclave_t.h"
 #include "SSLE_Obfuscation.h"
 
 using namespace std;
@@ -58,17 +58,28 @@ void SSLE_Obfuscation::electLeader()
     
 
     uint64_t *cmt;
+    uint64_t *testcmt; // test for decommit
     for (int i = 0; i < comm_values.size(); i++){
         if (i == (int)leader_id) {
             cmt = commit(&win, &prfValue);
+
+            // test for decommit
+            testcmt = commit(cmt, &prfValue);
+            if (testcmt != win) {
+                ocall_print("commit fails.");
+            }
         } else {
             cmt = commit(&lose, &prfValue);
+
+            // test for decommit
+            testcmt = commit(cmt, &prfValue);
+            if (testcmt != win) {
+                ocall_print("commit fails.");
+            }
         }
 
         comm_values[i] = *cmt;
     }
-
-    ocall_print((unsigned char)comm_value[0]);
 
 }
 
