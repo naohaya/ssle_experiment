@@ -255,7 +255,7 @@ int main(int argc, char *argv[])
         uint64_t win = 0xFF;
         uint64_t lose = 0x11;
         uint64_t *res = commit(output, prfkey);
-        if (res == win) {
+        if (*res == win) {
             std::cout << "You win" << std::endl;
         }
         else {
