@@ -28,6 +28,7 @@ using namespace std;
 Node registration(std::string);
 void ocall_print(const char *);
 void ocall_return_pubkey(uint8_t *, long *);
+uint64_t commit(uint64_t *, uint64_t *);
 
 std::vector<Node> nodes; // participants
 Node thisNode; // current node.
