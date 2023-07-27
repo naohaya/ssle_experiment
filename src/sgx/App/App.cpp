@@ -436,21 +436,11 @@ void readCmdline(int argc, char *argv[]){
 
 uint64_t * commit(uint64_t *data, uint64_t *prfkey)
 {
-    unsigned char *cdata = (unsigned char *)data;
-    unsigned char *cprfkey = (unsigned char *)prfkey;
-    unsigned char *result = (unsigned char *)malloc(sizeof(cdata) * sizeof(unsigned char));
-    size_t len = sizeof(cdata) / sizeof(unsigned char);
+    uint64_t inData = *data;
+    uint64_t prf = *prfkey;
+    uint64_t cmtdata = inData ^ prf;
 
-    for (size_t i = 0; i < len; i ++){
-        result[i] = cdata[i] ^ cprfkey[i];
-    }
-
-    uint64_t *cmtdata = (uint64_t *)result;
-//    uint64_t *cmtdata = *data ^ *prfkey; // error of mismatching operand types.
-
-//    uint64_t *cmtdata = (uint64_t *)malloc(sizeof(uint64_t));
-
-    return cmtdata;
+    return &cmtdata;
 }
 
 
