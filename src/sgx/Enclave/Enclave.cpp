@@ -60,7 +60,7 @@ int ecall_election(const uint64_t *prfkey,
 
 	ssleobf.initialize(prfkey, num_nodes);
 
-	ssleobf.electLeader();
+	ssleobf.electLeader(prfkey);
 
 	commitValue = ssleobf.getCommValue(0);
 	ocall_print((char *)&commitValue);
