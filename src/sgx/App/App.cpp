@@ -254,12 +254,12 @@ int main(int argc, char *argv[])
         // test for commitment value
         uint64_t win = 0xFF;
         uint64_t lose = 0x11;
-        uint64_t res = commit(output, prfkey);
+        uint64_t *res = commit(output, prfkey);
         if (res == win) {
             std::cout << "You win" << std::endl;
         }
         else {
-            std::cout<< "Decommit value: " << res << std::endl;
+            std::cout<< "Decommit value: " << (unsigned char)*res << std::endl;
         }
 
 
