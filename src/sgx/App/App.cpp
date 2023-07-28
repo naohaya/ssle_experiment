@@ -438,6 +438,7 @@ uint64_t * commit(uint64_t *data, uint64_t *prfkey)
     uint64_t prf = *prfkey;
     std:cout << inData << ":" << prf << std::endl;
     uint64_t cmtdata = inData ^ prf;
+    std::cout << "result: " << cmtdata << std::endl;
 
     return &cmtdata;
 }
