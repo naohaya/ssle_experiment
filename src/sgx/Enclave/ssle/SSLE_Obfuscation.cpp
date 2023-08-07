@@ -64,23 +64,23 @@ void SSLE_Obfuscation::electLeader()
             cmt = commit(&win, &prfValue);
 
             // test for decommit
-            testcmt = commit(cmt, &prfValue);
-            if (*testcmt != win) {
-                *cmt = -1;
-            }
+            //testcmt = commit(cmt, &prfValue);
+            //if (*testcmt != win) {
+            //    *cmt = -1;
+            //}
 
         } else {
             cmt = commit(&lose, &prfValue);
 
             // test for decommit
-            testcmt = commit(cmt, &prfValue);
-            if (*testcmt != lose) {
-                *cmt = -1;
-            }
+            //testcmt = commit(cmt, &prfValue);
+            //if (*testcmt != lose) {
+            //    *cmt = -1;
+            //}
 
         }
 
-        comm_values[i] = -1;   //*cmt;
+        comm_values[i] = *cmt;
     }
 
 }
