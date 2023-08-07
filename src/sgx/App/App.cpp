@@ -28,7 +28,7 @@ using namespace std;
 Node registration(std::string);
 void ocall_print(const char *);
 void ocall_return_pubkey(uint8_t *, long *);
-uint64_t *commit(uint64_t *, uint64_t *);
+uint64_t commit(uint64_t *, uint64_t *);
 
 std::vector<Node> nodes; // participants
 Node thisNode; // current node.
@@ -254,7 +254,7 @@ int main(int argc, char *argv[])
         // test for commitment value
         uint64_t win = 1111;
         uint64_t lose = 9999;
-        uint64_t *res = commit(output, prfkey);
+        uint64_t res = commit(output, prfkey);
         if (*res == win) {
             std::cout << "You win" << std::endl;
         }
@@ -432,15 +432,15 @@ void readCmdline(int argc, char *argv[]){
 
 }
 
-uint64_t * commit(uint64_t *data, uint64_t *prfkey)
+uint64_t commit(uint64_t *data, uint64_t *prfkey)
 {
     uint64_t inData = *data;
     uint64_t prf = *prfkey;
-    std:cout << inData << ":" << prf << std::endl;
+    std:cout << inData << ":" << prf << std::endl;0 
     uint64_t cmtdata = inData ^ prf;
     std::cout << "result: " << cmtdata << std::endl;
 
-    return &cmtdata;
+    return cmtdata;
 }
 
 
