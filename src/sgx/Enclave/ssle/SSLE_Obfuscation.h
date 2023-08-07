@@ -24,8 +24,8 @@ class SSLE_Obfuscation //: public SSLE
     std::string punctKey;
     int num;
     uint32_t leader_id;
-    uint64_t win = 0xABCDEF1234567890;
-    uint64_t lose = 0x987654321FEDCBA;
+    uint64_t win = 0x00; //ABCDEF1234567890;
+    uint64_t lose = 0xFF; //987654321FEDCBA;
 
 
     public:
