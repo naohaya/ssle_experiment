@@ -259,7 +259,7 @@ int main(int argc, char *argv[])
             std::cout << "You win" << std::endl;
         }
         else {
-            std::cout << "Decommit value: " << (unsigned char)res << std::endl;
+            std::cout << "Decommit value: " << res << std::endl;
         }
 
 
