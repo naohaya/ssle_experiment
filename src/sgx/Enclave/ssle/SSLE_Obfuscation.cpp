@@ -23,6 +23,10 @@ void SSLE_Obfuscation::initialize(const uint64_t *prfkey, const int *participant
 void SSLE_Obfuscation::initialize(const int *participants)
 {
     num = *participants;
+
+    for(int i = 0; i < num; i++) {
+        comm_values.push_back(0);
+    }
 }
 
 uint64_t SSLE_Obfuscation::get_key()
@@ -56,10 +60,9 @@ void SSLE_Obfuscation::electLeader()
 //    leader_id = rand_value % num;
     leader_id = (int)prfValue % num;
     
-
     uint64_t cmt;
     uint64_t *testcmt; // test for decommit
-    for (int i = 0; i < comm_values.size(); i++){
+    for (int i = 0; i < num; i++){
         if (i == (int)leader_id) {
             cmt = commit(&win, &prfValue);
 
