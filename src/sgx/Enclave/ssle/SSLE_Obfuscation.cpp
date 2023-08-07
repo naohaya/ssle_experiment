@@ -57,7 +57,7 @@ void SSLE_Obfuscation::electLeader()
     leader_id = (int)prfValue % num;
     
 
-    uint64_t *cmt;
+    uint64_t cmt;
     uint64_t *testcmt; // test for decommit
     for (int i = 0; i < comm_values.size(); i++){
         if (i == (int)leader_id) {
@@ -80,7 +80,7 @@ void SSLE_Obfuscation::electLeader()
 
         }
 
-        comm_values[i] = *cmt;
+        comm_values[i] = cmt;
     }
 
 }
@@ -117,7 +117,7 @@ uint64_t SSLE_Obfuscation::getCommValue(int n)
     }
 }
 
-uint64_t * SSLE_Obfuscation::commit(uint64_t *data, uint64_t *prfkey)
+uint64_t SSLE_Obfuscation::commit(uint64_t *data, uint64_t *prfkey)
 {
     uint64_t inData = *data;
     uint64_t prf = *prfkey;
@@ -138,7 +138,7 @@ uint64_t * SSLE_Obfuscation::commit(uint64_t *data, uint64_t *prfkey)
 //    uint64_t *cmtdata = (uint64_t *)malloc(sizeof(uint64_t));
     */
 
-    return &cmtdata;
+    return cmtdata;
 }
 
 // test commit impl.
