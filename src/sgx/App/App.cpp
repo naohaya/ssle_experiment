@@ -11,6 +11,7 @@
 #include <string>
 #include <stdio.h>
 #include <sstream>
+#include <iomanip>
 #include "Node.h"
 //#include "pprf.h"
 //#include "commitment.h"
@@ -259,7 +260,8 @@ int main(int argc, char *argv[])
             std::cout << "You win" << std::endl;
         }
         else {
-            std::cout << "Decommit value: " << res << std::endl;
+            //std::cout << "Decommit value: " << res << std::endl;
+            std::cout << std::setw(16) << std::setfill('0') << std::hex << res << std::endl;
         }
 
 
