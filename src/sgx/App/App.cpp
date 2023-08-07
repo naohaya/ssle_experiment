@@ -436,8 +436,9 @@ uint64_t commit(uint64_t *data, uint64_t *prfkey)
 {
     uint64_t inData = *data;
     uint64_t prf = *prfkey;
+    uint64_t cmtdata = 0;
     std:cout << inData << ":" << prf << std::endl;0 
-    uint64_t cmtdata = inData ^ prf;
+    cmtdata = inData ^ prf;
     std::cout << "result: " << cmtdata << std::endl;
 
     return cmtdata;
